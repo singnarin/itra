@@ -21,7 +21,7 @@
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
       <i class="fas fa-fw fa-cog"></i>
-      <span>ชุดแบบทดสอบ</span>
+      <span>แบบประเมินความเสี่ยง</span>
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
@@ -34,10 +34,11 @@
 -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="#" >
+    <a class="nav-link collapsed" href="question" >
       <i class="fas fa-fw fa-cog"></i>
-      <span>ชุดแบบทดสอบ</span>
+      <span>แบบประเมินความเสี่ยง</span>
     </a>
   </li>
+
 </ul>
 <!-- End of Sidebar -->

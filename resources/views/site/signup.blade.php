@@ -7,12 +7,16 @@
 						<!-- Nested Row within Card Body -->
 						<div class="row">
 							<!--<div class="col-lg-5 d-none d-lg-block bg-register-image"></div>-->
-							<div class="col-lg-9">
+							<div class="col-lg-12">
 								<div class="p-5">
 									<div class="text-center">
 										<h1 class="h4 text-gray-900 mb-4">ลงทะเบียน</h1>
+
+										@include('layout.flash-message')
+										
 									</div>
-									<form class="user">
+									<form class="user" action="regis" method="post" id="myForm" enctype="multipart/form-data">
+										<input type="hidden" name="_token" value="{{ csrf_token() }}">
 										<div class="form-group row">
 											<div class="col-sm-2 mb-2 mb-sm-0">
 												<input type="text" class="form-control form-control-user" id="prefixName" name="prefixName"
@@ -34,21 +38,19 @@
 											</div>
 											<div class="col-sm-6">
 												<input type="text" class="form-control form-control-user" id="userId" name="userId"
-													placeholder="เลขบัตรประจำตัวประชาชน">
+													placeholder="เลขบัตรประจำตัวประชาชน" maxlength="13">
+												<span class="error"></span>
 											</div>
 										</div>
 										<div class="form-group row">
 											<div class="col-sm-4 mb-3 mb-sm-0">
-												<input type="text" class="form-control form-control-user" id="school"
-													placeholder="สถานศึกษา">
+												{!! Form::select('school_id',[null=>':: สถานศึกษา ::'] + \App\Schools::pluck('school','id')->toArray(), null, array('class'=>'form-control')) !!} 
 											</div>
 											<div class="col-sm-3 mb-3 mb-sm-0">
-												<input type="text" class="form-control form-control-user" id="province" name="province"
-													placeholder="จังหวัด">
+												{!! Form::select('province_id',[null=>':: จังหวัด ::'] + \App\Provinces::pluck('name_th','id')->toArray(), null, array('class'=>'form-control')) !!} 
 											</div>
 											<div class="col-sm-5">
-												<input type="text" class="form-control form-control-user" id="position" name="position"
-													placeholder="ตำแหน่ง">
+												{!! Form::select('position_id',[null=>':: ตำแหน่ง ::'] + \App\Positions::pluck('positionName','id')->toArray(), null, array('class'=>'form-control')) !!} 
 											</div>
 										</div>
 										<div class="form-group">
@@ -58,16 +60,14 @@
 										<div class="form-group row">
 											<div class="col-sm-6 mb-3 mb-sm-0">
 												<input type="password" class="form-control form-control-user"
-													id="password" placeholder="Password">
+													name="password" id="password" placeholder="Password">
 											</div>
 											<div class="col-sm-6">
 												<input type="password" class="form-control form-control-user"
-													id="repeatPassword" placeholder="Repeat Password">
+													id="repeatPassword" name="repeatPassword" placeholder="Repeat Password">
 											</div>
 										</div>
-										<a href="login.html" class="btn btn-primary btn-user btn-block">
-											ลงทะเบียน
-										</a>
+										<button id="button" type="submit" class="btn btn-primary btn-user btn-block">ลงทะเบียน</button>
 										<hr>
 										<!--
 										<a href="index.html" class="btn btn-google btn-user btn-block">
@@ -80,10 +80,7 @@
 									</form>
 									<hr>
 									<div class="text-center">
-										<a class="small" href="forgot-password.html">Forgot Password?</a>
-									</div>
-									<div class="text-center">
-										<a class="small" href="login.html">Already have an account? Login!</a>
+										<a class="small" href="loginForm">เข้าสู่ระบบ</a>
 									</div>
 								</div>
 							</div>
@@ -92,3 +89,37 @@
 				</div>
 			</div>
 @endsection
+
+<script type='text/javascript' src='https://code.jquery.com/jquery-1.12.4.min.js' crossorigin="anonymous"></script>
+<script language="javascript">
+	$(document).ready(function(){
+		$('#userId').on('keyup',function(){
+		  if($.trim($(this).val()) != '' && $(this).val().length < 14){
+			id = $(this).val().replace(/-/g,"");
+			var result = Script_checkID(id);
+			const btn = document.getElementById("button");
+			if(result === false){
+				btn.disabled = true;
+			}else{
+				btn.disabled = false;
+			}
+		  }else{
+			$('span.error').removeClass('true').text('');
+		  }
+		})
+	  });
+	  
+	  function Script_checkID(id){
+		  if(! IsNumeric(id)) return false;
+		  if(id.substring(0,1)== 0) return false;
+		  if(id.length != 13) return false;
+		  for(i=0, sum=0; i < 12; i++)
+			  sum += parseFloat(id.charAt(i))*(13-i);
+		  if((11-sum%11)%10!=parseFloat(id.charAt(12))) return false;
+		  return true;
+	  }
+	  function IsNumeric(input){
+		  var RE = /^-?(0|INF|(0[1-7][0-7]*)|(0x[0-9a-fA-F]+)|((0|[1-9][0-9]*|(?=[\.,]))([\.,][0-9]+)?([eE]-?\d+)?))$/;
+		  return (RE.test(input));
+	  }
+</script>
