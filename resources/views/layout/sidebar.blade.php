@@ -36,7 +36,31 @@
   <li class="nav-item">
     <a class="nav-link collapsed" href="question" >
       <i class="fas fa-fw fa-cog"></i>
-      <span>แบบประเมินความเสี่ยง</span>
+      <span>แบบประเมินความเสี่ยงสำหรับผู้ใช้งานทั่วไป</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="result" >
+      <i class="fas fa-fw fa-cog"></i>
+      <span>ผลการประเมินความเสี่ยง</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="questionadmin" >
+      <i class="fas fa-fw fa-cog"></i>
+      <span>แบบประเมินความเสี่ยงสำหรับผู้ดูแลระบบสารสนเทศ</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="resultadmin" >
+      <i class="fas fa-fw fa-cog"></i>
+      <span>ผลการประเมินความเสี่ยง</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="report" >
+      <i class="fas fa-fw fa-cog"></i>
+      <span>รายงาน</span>
     </a>
   </li>
 

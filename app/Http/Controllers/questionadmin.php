@@ -5,33 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\Users;
-use App\Questions;
+use App\Questionadmins;
 use App\Answers;
 use App\Http\Requests;
 
-class question extends Controller
+class questionadmin extends Controller
 {
     public function question(){
         $user = Session::get('user');
         if(empty($user)){
           return View('site.login');
         }else{
-            $questions = Questions::all();
-            return View('question.question')
+            $questions = Questionadmins::all();
+            return View('question.questionadmin')
             ->with('questions', $questions);
-        }
-      }
-
-      public function result(Request $request){
-        $user = Session::get('user');
-        if(empty($user)){
-          return View('site.login');
-        }else{
-            $userdatas=Users::find(Session::get('user')[0]->id);
-            $questions = Questions::all();
-            return View('question.result')
-            ->with('questions', $questions)
-            ->with('userdatas', $userdatas);
         }
       }
 
@@ -40,8 +27,8 @@ class question extends Controller
         if(empty($user)){
           return View('site.login');
         }else{
-          $questions = Questions::find($request->get('id'));
-            return View('question.addQuestion')
+          $questions = Questionadmins::find($request->get('id'));
+            return View('question.addQuestionadmin')
             ->with('questions', $questions);
         }
       }
@@ -51,9 +38,9 @@ class question extends Controller
         if(empty($user)){
           return View('site.login');
         }else{
-            $questions = Questions::find($request->get('id'));
+            $questions = Questionadmins::find($request->get('id'));
             if(empty($questions)){
-              $questions = New Questions;
+              $questions = New Questionadmins;
             }
 
               if($request->all()){
@@ -82,11 +69,11 @@ class question extends Controller
                     $questions->section_id = $request->get('section_id');
                   }
                   if($questions->save()){
-                    $questions = Questions::all();
-                    return View('question.question')->with('success','เรียบร้อย')->with('questions', $questions);
+                    $questions = Questionadmins::all();
+                    return View('question.questionadmin')->with('success','เรียบร้อย')->with('questions', $questions);
                   }
           }
-            return View('question.addQuestion')
+            return View('question.addQuestionadmin')
             ->with('questions', $questions);
         }
       }
@@ -96,21 +83,21 @@ class question extends Controller
         if(empty($user)){
           return View('site.login');
         }else{
-            $questions =  Questions::find($request->get('id'))->delete();
+            $questions =  Questionadmins::find($request->get('id'))->delete();
             echo '<script language="javascript">';
-            echo 'alert("ลบเรียบร้อย");window.location = "question"';
+            echo 'alert("ลบเรียบร้อย");window.location = "questionadmin"';
             echo '</script>';
         }
       }
 
       public function answer(Request $request){
-        $questions = Questions::all();
+        $questions = Questionadmins::all();
         $users=Users::find(Session::get('user')[0]->id);
-        //$score='';
+        $score='';
         foreach($questions as $question){
-          $score[$question->id] = $request->get($question->id);
+          $score = $score.$request->get($question->id).',';
         }
-        $users->answer = base64_encode(serialize($score)) ;
+        $users->answeradmin = $score ;
         if($users->save()){
           return back()->with('success','ระบบบันทึกข้อมูลของท่านเรียบร้อย');
         }
