@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 10 มิ.ย. 2021 เมื่อ 11:20 AM
+-- Generation Time: 11 มิ.ย. 2021 เมื่อ 06:40 AM
 -- เวอร์ชันของเซิร์ฟเวอร์: 10.4.10-MariaDB
 -- PHP Version: 7.1.33
 
@@ -271,7 +271,7 @@ CREATE TABLE `users` (
   `permit` varchar(20) DEFAULT NULL,
   `question_id` varchar(10) DEFAULT NULL,
   `answer` text DEFAULT NULL,
-  `answeradmin` varchar(250) DEFAULT NULL
+  `answeradmin` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -279,8 +279,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `prefixName`, `firstName`, `lastName`, `phone`, `school_id`, `province_id`, `position_id`, `email`, `password`, `permit`, `question_id`, `answer`, `answeradmin`) VALUES
-('1560100096259', 'xxxx', 'xxxxx', 'xxxxx', '0819507293', '1', '15', '1', 'singnarin@pyo1.go.th', '1111', 'admin', NULL, NULL, ''),
-('8332221857944', 'นาย', 'รูปหล่อ', 'ใจดี', '9999999999', '1', '1', '1', 'singnarin@gmail.com', '1111', NULL, NULL, 'YTo1OntpOjE7czoxOiIxIjtpOjI7czoxOiIyIjtpOjM7czoxOiIzIjtpOjU7czoxOiI0IjtpOjE1O3M6MToiNCI7fQ==', '');
+('1560100096259', 'xxxx', 'xxxxx', 'xxxxx', '0819507293', '1', '15', '3', 'singnarin@pyo1.go.th', '1111', 'admin', NULL, NULL, ''),
+('7315998568260', 'นางสาว', 'admin', 'ผู้ดูแลระบบ', '9999999999', '7', '3', '2', 'admin@itra.org', '1234', NULL, NULL, NULL, NULL),
+('8332221857944', 'นาย', 'รูปหล่อ', 'ใจดี', '9999999999', '1', '1', '1', 'singnarin@gmail.com', '1111', NULL, NULL, 'YTo1OntpOjE7czoxOiIxIjtpOjI7czoxOiIyIjtpOjM7czoxOiIzIjtpOjU7czoxOiI0IjtpOjE1O3M6MToiNCI7fQ==', 'YTo1OntpOjE7czoxOiI0IjtpOjI7czoxOiI0IjtpOjM7czoxOiIzIjtpOjU7czoxOiIyIjtpOjE1O3M6MToiMSI7fQ==');
 
 --
 -- Indexes for dumped tables

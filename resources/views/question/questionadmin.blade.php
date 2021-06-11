@@ -1,3 +1,4 @@
+<?php $user = Session::get('user'); ?>
 @extends('layout.main')
 
 @section('content')
@@ -11,9 +12,11 @@
 										<h1 class="h4 text-gray-900 mb-4">การประเมินผู้ใช้งานผู้ดูแลระบบสารสนเทศ</h1>
 										@include('layout.flash-message')
 									</div>
+                                    @if ($user[0]->position_id==3)
                                     <div class="text-left">
 										<a href="addQuestionadmin"><button id="button" type="button" class="btn btn-success">เพิ่มคำถาม</button></a> 
 									</div>
+                                    @endif
 									<form class="user" action="answeradmin" method="post" id="myForm" enctype="multipart/form-data">
 										<input type="hidden" name="_token" value="{{ csrf_token() }}">
 										<div class="table-responsive">
@@ -26,33 +29,36 @@
                                                 <tbody>
                                                     
                                                     @foreach ($questions as $question)
-                                                        <tr>
-                                                            <td>
-                                                                <p>{{$question->no}}.{{$question->question}}</p>
-                                                                <div class="radio">
-                                                                    <label><input type="radio" name="{{$question->id}}" value="{{$question->id.'='.substr($question->answer1,-1)}}">{{substr($question->answer1,0,-2)}}</label>
-                                                                </div>
-                                                                <div class="radio">
-                                                                    <label><input type="radio" name="{{$question->id}}" value="{{$question->id.'='.substr($question->answer2,-1)}}">{{substr($question->answer2,0,-2)}}</label>
-                                                                </div>
-                                                                <div class="radio">
-                                                                    <label><input type="radio" name="{{$question->id}}" value="{{$question->id.'='.substr($question->answer3,-1)}}">{{substr($question->answer3,0,-2)}}</label>
-                                                                </div>
-                                                                <div class="radio">
-                                                                    <label><input type="radio" name="{{$question->id}}" value="{{$question->id.'='.substr($question->answer4,-1)}}">{{substr($question->answer4,0,-2)}}</label>
-                                                                </div>
-                                                                <div class="text-left">
-                                                                    <a href="../editQuestionadmin?id={{$question->id}}"><button id="button" type="button" class="btn btn-warning">แก้ไข</button></a> 
-                                                                    <a href="../deleteQuestionadmin?id={{$question->id}}"><button id="button" type="button" class="btn btn-danger">ลบ</button></a>
-                                                                </div>
-                                                            </td>
-                                                        </tr>                                                       
+                                                    <tr>
+                                                        <td>
+                                                            <p>{{$question->no}}.{{$question->question}}</p>
+                                                            <div class="radio">
+                                                                <label><input type="radio" name="{{$question->id}}" value="{{substr($question->answer1,-1)}}">{{substr($question->answer1,0,-2)}}</label>
+                                                            </div>
+                                                            <div class="radio">
+                                                                <label><input type="radio" name="{{$question->id}}" value="{{substr($question->answer2,-1)}}">{{substr($question->answer2,0,-2)}}</label>
+                                                            </div>
+                                                            <div class="radio">
+                                                                <label><input type="radio" name="{{$question->id}}" value="{{substr($question->answer3,-1)}}">{{substr($question->answer3,0,-2)}}</label>
+                                                            </div>
+                                                            <div class="radio">
+                                                                <label><input type="radio" name="{{$question->id}}" value="{{substr($question->answer4,-1)}}">{{substr($question->answer4,0,-2)}}</label>
+                                                            </div>
+                                                            @if ($user[0]->position_id==3)
+                                                            <div class="text-left">
+                                                                <a href="../editQuestion?id={{$question->id}}"><button id="button" type="button" class="btn btn-warning">แก้ไข</button></a> 
+                                                                <a href="../deleteQuestion?id={{$question->id}}"><button id="button" type="button" class="btn btn-danger">ลบ</button></a>
+                                                            </div>
+                                                            @endif
+                                                        </td>
+                                                    </tr>                                                       
                                                     @endforeach
 
                                                 </tbody>
                                             </table>
-										 
-										<button id="button" type="submit" class="btn btn-primary btn-user btn-block">ส่งคำตอบ</button>
+                                        @if ($user[0]->position_id!=3)
+										    <button id="button" type="submit" class="btn btn-primary btn-user btn-block">ส่งคำตอบ</button>
+                                        @endif
 										<hr>
 									</form>
 								</div>

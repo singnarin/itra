@@ -21,4 +21,8 @@ Route::any('deleteQuestionadmin', 'questionadmin@deleteQuestion');
 Route::any('editQuestionadmin', 'questionadmin@editQuestion');
 Route::any('resultadmin', 'questionadmin@result');
 
+Route::get('report', 'admin@report');
+
+Route::get('profile', 'user@profile');
+
 

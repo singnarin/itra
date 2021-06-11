@@ -1,3 +1,4 @@
+<?php $user = Session::get('user'); ?>
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -32,17 +33,44 @@
     </div>
   </li>
 -->
-
+@if(!empty($user[0]))
+@if($user[0]->position_id==1 && $user[0]->answer=='')
   <li class="nav-item">
     <a class="nav-link collapsed" href="question" >
       <i class="fas fa-fw fa-cog"></i>
       <span>แบบประเมินความเสี่ยงสำหรับผู้ใช้งานทั่วไป</span>
     </a>
   </li>
+@endif
+@if($user[0]->position_id==1 && $user[0]->answer!='')
   <li class="nav-item">
     <a class="nav-link collapsed" href="result" >
       <i class="fas fa-fw fa-cog"></i>
       <span>ผลการประเมินความเสี่ยง</span>
+    </a>
+  </li>
+@endif
+@if($user[0]->position_id==2 && $user[0]->answer=='')
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="questionadmin" >
+      <i class="fas fa-fw fa-cog"></i>
+      <span>แบบประเมินความเสี่ยงสำหรับผู้ดูแลระบบสารสนเทศ</span>
+    </a>
+  </li>
+@endif
+@if($user[0]->position_id==2 && $user[0]->answer!='')
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="resultadmin" >
+      <i class="fas fa-fw fa-cog"></i>
+      <span>ผลการประเมินความเสี่ยง</span>
+    </a>
+  </li>
+@endif
+@if($user[0]->position_id==3)
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="question" >
+      <i class="fas fa-fw fa-cog"></i>
+      <span>แบบประเมินความเสี่ยงสำหรับผู้ใช้งานทั่วไป</span>
     </a>
   </li>
   <li class="nav-item">
@@ -52,17 +80,25 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link collapsed" href="resultadmin" >
-      <i class="fas fa-fw fa-cog"></i>
-      <span>ผลการประเมินความเสี่ยง</span>
-    </a>
-  </li>
-  <li class="nav-item">
     <a class="nav-link collapsed" href="report" >
       <i class="fas fa-fw fa-cog"></i>
       <span>รายงาน</span>
     </a>
   </li>
-
+@endif
+@else
+<li class="nav-item">
+  <a class="nav-link collapsed" href="loginForm" >
+    <i class="fas fa-fw fa-cog"></i>
+    <span>เข้าสู่ระบบ</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link collapsed" href="signup" >
+    <i class="fas fa-fw fa-cog"></i>
+    <span>ลงทะเบียน</span>
+  </a>
+</li>
+@endif
 </ul>
 <!-- End of Sidebar -->

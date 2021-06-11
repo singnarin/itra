@@ -12,4 +12,10 @@ class Users extends Model
     public function schools(){
         return $this->belongsTo('App\Schools', 'school_id', 'id');
     }
+    public function provinces(){
+        return $this->belongsTo('App\Provinces', 'province_id', 'id');
+    }
+    public function positions(){
+        return $this->belongsTo('App\Positions', 'position_id', 'id');
+    }
 }

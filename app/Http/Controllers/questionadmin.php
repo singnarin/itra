@@ -93,13 +93,25 @@ class questionadmin extends Controller
       public function answer(Request $request){
         $questions = Questionadmins::all();
         $users=Users::find(Session::get('user')[0]->id);
-        $score='';
         foreach($questions as $question){
-          $score = $score.$request->get($question->id).',';
+          $score[$question->id] = $request->get($question->id);
         }
-        $users->answeradmin = $score ;
+        $users->answeradmin = base64_encode(serialize($score)) ;
         if($users->save()){
           return back()->with('success','ระบบบันทึกข้อมูลของท่านเรียบร้อย');
+        }
+      }
+
+      public function result(Request $request){
+        $user = Session::get('user');
+        if(empty($user)){
+          return View('site.login');
+        }else{
+            $userdatas=Users::find(Session::get('user')[0]->id);
+            $questions = Questionadmins::all();
+            return View('question.resultadmin')
+            ->with('questions', $questions)
+            ->with('userdatas', $userdatas);
         }
       }
 }

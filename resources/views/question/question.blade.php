@@ -1,3 +1,4 @@
+<?php $user = Session::get('user'); ?>
 @extends('layout.main')
 
 @section('content')
@@ -11,9 +12,13 @@
 										<h1 class="h4 text-gray-900 mb-4">การประเมินผู้ใช้งานทั่วไป</h1>
 										@include('layout.flash-message')
 									</div>
+                                    
+                                    @if ($user[0]->position_id==3)
                                     <div class="text-left">
 										<a href="addQuestion"><button id="button" type="button" class="btn btn-success">เพิ่มคำถาม</button></a> 
 									</div>
+                                    @endif
+                                    
 									<form class="user" action="answer" method="post" id="myForm" enctype="multipart/form-data">
 										<input type="hidden" name="_token" value="{{ csrf_token() }}">
 										<div class="table-responsive">
@@ -41,18 +46,21 @@
                                                                 <div class="radio">
                                                                     <label><input type="radio" name="{{$question->id}}" value="{{substr($question->answer4,-1)}}">{{substr($question->answer4,0,-2)}}</label>
                                                                 </div>
+                                                                @if ($user[0]->position_id==3)
                                                                 <div class="text-left">
                                                                     <a href="../editQuestion?id={{$question->id}}"><button id="button" type="button" class="btn btn-warning">แก้ไข</button></a> 
                                                                     <a href="../deleteQuestion?id={{$question->id}}"><button id="button" type="button" class="btn btn-danger">ลบ</button></a>
                                                                 </div>
+                                                                @endif
                                                             </td>
                                                         </tr>                                                       
                                                     @endforeach
 
                                                 </tbody>
                                             </table>
-										 
-										<button id="button" type="submit" class="btn btn-primary btn-user btn-block">ส่งคำตอบ</button>
+                                        @if ($user[0]->position_id!=3)
+										    <button id="button" type="submit" class="btn btn-primary btn-user btn-block">ส่งคำตอบ</button>
+                                        @endif
 										<hr>
 									</form>
 								</div>

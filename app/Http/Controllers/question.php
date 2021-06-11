@@ -106,7 +106,6 @@ class question extends Controller
       public function answer(Request $request){
         $questions = Questions::all();
         $users=Users::find(Session::get('user')[0]->id);
-        //$score='';
         foreach($questions as $question){
           $score[$question->id] = $request->get($question->id);
         }

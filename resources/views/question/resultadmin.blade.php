@@ -35,7 +35,7 @@
                                                         </td>
                                                         <td>
                                                             <?php
-                                                                $score = unserialize(base64_decode($users[0]->answer));
+                                                                $score = unserialize(base64_decode($users[0]->answeradmin));
                                                                 //echo $score[$question->id];
                                                                 
                                                                 switch ($score[$question->id]) {
