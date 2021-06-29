@@ -16,6 +16,10 @@ class index extends Controller
     public function index(){
         return View('site.index');
       }
+
+    public function index_2(){
+      return View('site.index_2');
+    }
     
     public function loginForm(){
         return View('site.login');
@@ -97,7 +101,7 @@ class index extends Controller
             ->get();
             if(!empty($user[0])){
               Session::put('user', $user);
-              return Redirect('/');
+              return Redirect('index_2');
             }else{
               return back()->with('error','email หรือ รหัสผ่านไม่ถูกต้อง');
             }

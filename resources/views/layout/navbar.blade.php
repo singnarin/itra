@@ -7,21 +7,14 @@
     <i class="fa fa-bars"></i>
   </button>
 
+  
   <!-- Topbar Search -->
-  <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
     <div class="input-group">
-      <h1 class="h4 text-gray-900 mb-4">IT Risks Assessment</h1>
-      
-      <!--
-      <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-      <div class="input-group-append">
-        <button class="btn btn-primary" type="button">
-          <i class="fas fa-search fa-sm"></i>
-        </button>
-      </div>
-    -->
+      <img src="../images/logo.png"  width="50">
+      <h1 class="h2 text-gray-900 mb-12">ระบบประเมินความเสี่ยงการใช้งานเทคโนโลยีสารสนเทศในองค์กรเบื้องต้น</h1>
+      <h4 class="h5 text-gray-900 mb-12">อ้างอิงตามองค์ประกอบพื้นฐานความปลอดภัย CIA และมาตรฐานความปลอดภัย ISO 27001:2015</h4>
+     
     </div>
-  </form>
 
   <!-- Topbar Navbar -->
   <ul class="navbar-nav ml-auto">

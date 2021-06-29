@@ -110,6 +110,7 @@ class question extends Controller
           $score[$question->id] = $request->get($question->id);
         }
         $users->answer = base64_encode(serialize($score)) ;
+        $users->status = 'OK';
         if($users->save()){
           return back()->with('success','ระบบบันทึกข้อมูลของท่านเรียบร้อย');
         }

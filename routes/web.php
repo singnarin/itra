@@ -1,6 +1,7 @@
 <?php
 
 Route::get('/', 'index@index');
+Route::get('index_2', 'index@index_2');
 Route::get('loginForm', 'index@loginForm');
 Route::get('signup', 'index@signup');
 Route::any('regis', 'index@regis');

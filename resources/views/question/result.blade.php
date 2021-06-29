@@ -9,7 +9,8 @@
 							<div class="col-lg-12">
 								<div class="p-5">
 									<div class="text-center">
-										<h1 class="h4 text-gray-900 mb-4">ผลการประเมินความเสี่ยง</h1>
+										<h1 class="h4 text-gray-900 mb-4">ผลการทำแบบทดสอบ สำหรับผู้ใช้งานทั่วไป</h1>
+										<h1 class="h6 text-gray-900 mb-4">แบบสอบถามชุดนี้ประกอบด้วย 3 เกณฑ์ประกอบหลักในการประเมินความปลอดภัยจากการใช้เทคโนโลยีสารสนเทศ</h1>
 
 										@include('layout.flash-message')
 										
@@ -19,46 +20,30 @@
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th colspan="2">1.Confidential: การปกป้องสารสนเทศให้เข้าถึงได้เฉพาะผู้ที่มีสิทธิ</th>
-                                                </tr>
-                                                <tr>
-                                                    <th>ปัจจัยเสี่ยง</th>
-                                                    <th>ผลการประเมินความเสี่ยง</th>
+                                                    <th>เกณฑ์การประเมิน</th>
+                                                    <th>ผลการประเมินอยู่ในระดับ</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                
-                                                @foreach ($questions as $question)
-                                                    <tr>
-                                                        <td>
-                                                            <p>{{$question->no}}.{{$question->question}}</p>
-                                                        </td>
-                                                        <td>
-                                                            <?php
-                                                                $score = unserialize(base64_decode($users[0]->answer));
-                                                                //echo $score[$question->id];
-                                                                
-                                                                switch ($score[$question->id]) {
-                                                                    case 1:
-                                                                      echo "1 = ความเสี่ยงต่ำ";
-                                                                      break;
-                                                                    case 2:
-                                                                      echo "2 = ความเสี่ยงปานกลาง";
-                                                                      break;
-                                                                    case 3:
-                                                                      echo "3 = ความเสี่ยงสูง";
-                                                                      break;
-                                                                    case 4:
-                                                                      echo "4 = ความเสี่ยงสูงมาก";
-                                                                      break;
-                                                                    default:
-                                                                      echo "ไม่ทราบผล";
-                                                                }
-                                                            ?>
-                                                        </td>
-                                                    </tr>                                                       
-                                                @endforeach
-
+                                                <tr>
+                                                    <td>1.Confidential: การปกป้องสารสนเทศให้เข้าถึงได้เฉพาะผู้ที่มีสิทธิ (จำนวน 8 ข้อ)</td>
+                                                    <td>Result</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2.Integrity: ปกป้องความถูกต้องสมบูรณ์ของสารสนเทศไม่ให้ถูกแก้ไขเปลี่ยนแปลงผิดไปจากความเป็นจริง (จำนวน 6 ข้อ)</td>
+                                                    <td>Result</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3.Availability : สร้างความเชื่อมั่นว่าระบบสารสนเทศพร้อมใช้งาน (จำนวน 15 ข้อ)</td>
+                                                    <td>Result</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>สรุปผลการประเมินภาพรวม การใช้งานเทคโนโลยีสารสนเทศในองค์กร</td>
+                                                    <td>Result</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">ดูรายละเอียดข้อควรปรับปรุงเพื่อลดความเสี่ยงให้น้อยลง</td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     <hr>

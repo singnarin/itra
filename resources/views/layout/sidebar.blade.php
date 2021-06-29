@@ -4,14 +4,21 @@
 
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-    <div class="sidebar-brand-icon rotate-n-15">
-      <i class="fas fa-laugh-wink"></i>
+    <div class="sidebar-brand-icon">
+      <br><br>
+      <img src="../images/MPlogo.png" width="200">
+      <!--<i class="fas fa-laugh-wink"></i>-->
     </div>
+    <br>
     <div class="sidebar-brand-text mx-3"><!--SB Admin <sup>2</sup>--></div>
   </a>
 
   <!-- Divider -->
+  <div class="sidebar-divider"><br><br></div>
   <hr class="sidebar-divider">
+  
+
+
 
   <!-- Heading -->
   <div class="sidebar-heading">
@@ -34,23 +41,25 @@
   </li>
 -->
 @if(!empty($user[0]))
-@if($user[0]->position_id==1 && $user[0]->answer=='')
+@if($user[0]->position_id==1 && $user[0]->status=='')
   <li class="nav-item">
     <a class="nav-link collapsed" href="question" >
       <i class="fas fa-fw fa-cog"></i>
       <span>แบบประเมินความเสี่ยงสำหรับผู้ใช้งานทั่วไป</span>
+      
     </a>
   </li>
 @endif
-@if($user[0]->position_id==1 && $user[0]->answer!='')
+@if($user[0]->position_id==1 && $user[0]->status=='OK')
   <li class="nav-item">
     <a class="nav-link collapsed" href="result" >
       <i class="fas fa-fw fa-cog"></i>
       <span>ผลการประเมินความเสี่ยง</span>
+      
     </a>
   </li>
 @endif
-@if($user[0]->position_id==2 && $user[0]->answer=='')
+@if($user[0]->position_id==2 && $user[0]->status=='')
   <li class="nav-item">
     <a class="nav-link collapsed" href="questionadmin" >
       <i class="fas fa-fw fa-cog"></i>
@@ -58,7 +67,7 @@
     </a>
   </li>
 @endif
-@if($user[0]->position_id==2 && $user[0]->answer!='')
+@if($user[0]->position_id==2 && $user[0]->status=='OK')
   <li class="nav-item">
     <a class="nav-link collapsed" href="resultadmin" >
       <i class="fas fa-fw fa-cog"></i>
