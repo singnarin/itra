@@ -14,7 +14,7 @@
 										@include('layout.flash-message')
 										
 									</div>
-
+                                    @if ($userdatas->status=='OK')
                                     <div class="table-responsive">
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
@@ -35,7 +35,7 @@
                                                         </td>
                                                         <td>
                                                             <?php
-                                                                $score = unserialize(base64_decode($users[0]->answeradmin));
+                                                                $score = unserialize(base64_decode($userdatas->answeradmin));
                                                                 //echo $score[$question->id];
                                                                 
                                                                 switch ($score[$question->id]) {
@@ -64,6 +64,15 @@
                                     <hr>
                                 </form>
                             </div>
+                            @else
+                                <div class="alert alert-warning alert-block">
+                                    <a href="../questionadmin"><button type="button" class="close" data-dismiss="alert"></button>
+                                        <div align='center'>
+                                            <strong>ยังไม่ได้ทำแบบประเมินความเสี่ยง กลับไปทำแบบประเมิน</strong>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endif
                                     
 
 								</div>

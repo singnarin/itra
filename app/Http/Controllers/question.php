@@ -17,8 +17,10 @@ class question extends Controller
           return View('site.login');
         }else{
             $questions = Questions::all();
+            $userdatas=Users::find(Session::get('user')[0]->id);
             return View('question.question')
-            ->with('questions', $questions);
+            ->with('questions', $questions)
+            ->with('userdatas', $userdatas);
         }
       }
 

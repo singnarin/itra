@@ -20,9 +20,9 @@
 											</div>
                                             <div class="col-sm-4 mb-3 mb-sm-0">
                                                 @if(!empty($questions->section_id))
-                                                    {!! Form::select('section_id',[$questions->section_id=>$questions->sections->section] + \App\Sections::pluck('section','id')->toArray(), null, array('class'=>'form-control')) !!}
+                                                    {!! Form::select('section_id',[$questions->section_id=>$questions->sections->section] + \App\Sectionadmins::pluck('section','id')->toArray(), null, array('class'=>'form-control')) !!}
                                                 @else
-                                                    {!! Form::select('section_id',[null=>':: ส่วนที่ ::'] + \App\Sections::pluck('section','id')->toArray(), null, array('class'=>'form-control')) !!}
+                                                    {!! Form::select('section_id',[null=>':: ส่วนที่ ::'] + \App\Sectionadmins::pluck('section','id')->toArray(), null, array('class'=>'form-control')) !!}
                                                 @endif
 												 
 											</div>

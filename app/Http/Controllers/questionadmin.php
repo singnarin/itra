@@ -17,8 +17,10 @@ class questionadmin extends Controller
           return View('site.login');
         }else{
             $questions = Questionadmins::all();
+            $userdatas=Users::find(Session::get('user')[0]->id);
             return View('question.questionadmin')
-            ->with('questions', $questions);
+            ->with('questions', $questions)
+            ->with('userdatas', $userdatas);
         }
       }
 
@@ -97,6 +99,7 @@ class questionadmin extends Controller
           $score[$question->id] = $request->get($question->id);
         }
         $users->answeradmin = base64_encode(serialize($score)) ;
+        $users->status = 'OK';
         if($users->save()){
           return back()->with('success','ระบบบันทึกข้อมูลของท่านเรียบร้อย');
         }

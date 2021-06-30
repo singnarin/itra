@@ -3,7 +3,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index_2">
     <div class="sidebar-brand-icon">
       <br><br>
       <img src="../images/MPlogo.png" width="200">
@@ -41,7 +41,7 @@
   </li>
 -->
 @if(!empty($user[0]))
-@if($user[0]->position_id==1 && $user[0]->status=='')
+@if($user[0]->position_id==1)
   <li class="nav-item">
     <a class="nav-link collapsed" href="question" >
       <i class="fas fa-fw fa-cog"></i>
@@ -49,8 +49,6 @@
       
     </a>
   </li>
-@endif
-@if($user[0]->position_id==1 && $user[0]->status=='OK')
   <li class="nav-item">
     <a class="nav-link collapsed" href="result" >
       <i class="fas fa-fw fa-cog"></i>
@@ -59,15 +57,13 @@
     </a>
   </li>
 @endif
-@if($user[0]->position_id==2 && $user[0]->status=='')
+@if($user[0]->position_id==2)
   <li class="nav-item">
     <a class="nav-link collapsed" href="questionadmin" >
       <i class="fas fa-fw fa-cog"></i>
       <span>แบบประเมินความเสี่ยงสำหรับผู้ดูแลระบบสารสนเทศ</span>
     </a>
   </li>
-@endif
-@if($user[0]->position_id==2 && $user[0]->status=='OK')
   <li class="nav-item">
     <a class="nav-link collapsed" href="resultadmin" >
       <i class="fas fa-fw fa-cog"></i>

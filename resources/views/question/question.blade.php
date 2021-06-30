@@ -21,7 +21,17 @@
                                     
 									<form class="user" action="answer" method="post" id="myForm" enctype="multipart/form-data">
 										<input type="hidden" name="_token" value="{{ csrf_token() }}">
-										<div class="table-responsive">
+
+                                        @if ($userdatas->status=='OK')
+                                            <div class="alert alert-warning alert-block">
+                                                <a href="../result"><button type="button" class="close" data-dismiss="alert"></button>
+                                                    <div align='center'>
+                                                        <strong>ได้ทำแบบทดสอบเรียบร้อยแล้ว ดูผลการประเมิน</strong>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        @else
+                                        <div class="table-responsive">
                                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
@@ -64,6 +74,7 @@
 										<hr>
 									</form>
 								</div>
+                                        @endif
 							</div>
 						</div>
 					</div>

@@ -10,6 +10,6 @@ class Questionadmins extends Model
     protected $keyType = 'varchar';
     protected $table = 'questionadmins';
     public function sections(){
-        return $this->belongsTo('App\Sections', 'section_id', 'id');
+        return $this->belongsTo('App\Sectionadmins', 'section_id', 'id');
     }
 }
