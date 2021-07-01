@@ -7,6 +7,7 @@ use Session;
 use App\Users;
 use App\Questions;
 use App\Answers;
+use App\Sections;
 use App\Http\Requests;
 
 class question extends Controller
@@ -17,22 +18,11 @@ class question extends Controller
           return View('site.login');
         }else{
             $questions = Questions::all();
+            $sections = Sections::all();
             $userdatas=Users::find(Session::get('user')[0]->id);
             return View('question.question')
             ->with('questions', $questions)
-            ->with('userdatas', $userdatas);
-        }
-      }
-
-      public function result(Request $request){
-        $user = Session::get('user');
-        if(empty($user)){
-          return View('site.login');
-        }else{
-            $userdatas=Users::find(Session::get('user')[0]->id);
-            $questions = Questions::all();
-            return View('question.result')
-            ->with('questions', $questions)
+            ->with('sections', $sections)
             ->with('userdatas', $userdatas);
         }
       }
@@ -85,7 +75,11 @@ class question extends Controller
                   }
                   if($questions->save()){
                     $questions = Questions::all();
-                    return View('question.question')->with('success','เรียบร้อย')->with('questions', $questions);
+                    $sections = Sections::all();
+                    return View('question.question')
+                    ->with('success','เรียบร้อย')
+                    ->with('sections', $sections)
+                    ->with('questions', $questions);
                   }
           }
             return View('question.addQuestion')
@@ -115,6 +109,52 @@ class question extends Controller
         $users->status = 'OK';
         if($users->save()){
           return back()->with('success','ระบบบันทึกข้อมูลของท่านเรียบร้อย');
+        }
+      }
+
+      public function result(Request $request){
+        $user = Session::get('user');
+        if(empty($user)){
+          return View('site.login');
+        }else{
+            $userdatas=Users::find(Session::get('user')[0]->id);
+            $questions = Questions::all();
+            $sections = Sections::all();
+            return View('question.result')
+            ->with('questions', $questions)
+            ->with('sections', $sections)
+            ->with('userdatas', $userdatas);
+        }
+      }
+
+      public function resultchart(Request $request){
+        $user = Session::get('user');
+        if(empty($user)){
+          return View('site.login');
+        }else{
+            $userdatas=Users::find(Session::get('user')[0]->id);
+            $questions = Questions::all();
+            $sections = Sections::all()->toArray();
+            $section = Sections::all();
+            $sections = array_column($sections, 'id');
+            return View('question.resultchart')
+            ->with('questions', $questions)
+            ->with('sections', json_encode($sections,JSON_NUMERIC_CHECK))
+            ->with('section', $section)
+            ->with('userdatas', $userdatas);
+        }
+      }
+
+      public function resultquestion(Request $request, $id){
+        $user = Session::get('user');
+        if(empty($user)){
+          return View('site.login');
+        }else{
+            $questions = Questions::where('section_id', '=', $id)->get();
+            $userdatas=Users::find(Session::get('user')[0]->id);
+            return View('question.resultquestion')
+            ->with('questions', $questions)
+            ->with('userdatas', $userdatas);
         }
       }
 }

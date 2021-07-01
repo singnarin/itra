@@ -7,6 +7,7 @@ use Session;
 use App\Users;
 use App\Questionadmins;
 use App\Answers;
+use App\Sectionadmins;
 use App\Http\Requests;
 
 class questionadmin extends Controller
@@ -17,9 +18,11 @@ class questionadmin extends Controller
           return View('site.login');
         }else{
             $questions = Questionadmins::all();
+            $sections = Sectionadmins::all();
             $userdatas=Users::find(Session::get('user')[0]->id);
             return View('question.questionadmin')
             ->with('questions', $questions)
+            ->with('sections', $sections)
             ->with('userdatas', $userdatas);
         }
       }
@@ -72,11 +75,18 @@ class questionadmin extends Controller
                   }
                   if($questions->save()){
                     $questions = Questionadmins::all();
-                    return View('question.questionadmin')->with('success','เรียบร้อย')->with('questions', $questions);
+                    $sections = Sectionadmins::all();
+                    $userdatas=Users::find(Session::get('user')[0]->id);
+                    return View('question.questionadmin')->with('success','เรียบร้อย')
+                    ->with('questions', $questions)
+                    ->with('sections', $sections)
+                    ->with('userdatas', $userdatas);
                   }
           }
+          $userdatas=Users::find(Session::get('user')[0]->id);
             return View('question.addQuestionadmin')
-            ->with('questions', $questions);
+            ->with('questions', $questions)
+            ->with('userdatas', $userdatas);
         }
       }
 
@@ -112,7 +122,40 @@ class questionadmin extends Controller
         }else{
             $userdatas=Users::find(Session::get('user')[0]->id);
             $questions = Questionadmins::all();
+            $sections = Sectionadmins::all();
             return View('question.resultadmin')
+            ->with('questions', $questions)
+            ->with('sections', $sections)
+            ->with('userdatas', $userdatas);
+        }
+      }
+
+      public function resultchart(Request $request){
+        $user = Session::get('user');
+        if(empty($user)){
+          return View('site.login');
+        }else{
+            $userdatas=Users::find(Session::get('user')[0]->id);
+            $questions = Questionadmins::all();
+            $sections = Sectionadmins::all()->toArray();
+            $section = Sectionadmins::all();
+            $sections = array_column($sections, 'id');
+            return View('question.resultadminchart')
+            ->with('questions', $questions)
+            ->with('sections', json_encode($sections,JSON_NUMERIC_CHECK))
+            ->with('section', $section)
+            ->with('userdatas', $userdatas);
+        }
+      }
+
+      public function resultquestion(Request $request, $id){
+        $user = Session::get('user');
+        if(empty($user)){
+          return View('site.login');
+        }else{
+            $questions = Questionadmins::where('section_id', '=', $id)->get();
+            $userdatas=Users::find(Session::get('user')[0]->id);
+            return View('question.resultadminquestion')
             ->with('questions', $questions)
             ->with('userdatas', $userdatas);
         }

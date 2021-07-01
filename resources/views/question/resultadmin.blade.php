@@ -9,57 +9,120 @@
 							<div class="col-lg-12">
 								<div class="p-5">
 									<div class="text-center">
-										<h1 class="h4 text-gray-900 mb-4">ผลการประเมินความเสี่ยง</h1>
+										<h1 class="h4 text-gray-900 mb-4">ผลการทดสอบสำหรับผู้ดูแลระบบสารสนเทศ</h1>
+										<h1 class="h6 text-gray-900 mb-4">{{$users[0]->prefixName}}{{$users[0]->firstName}} {{$users[0]->lastName}}</h1>
+										<h1 class="h6 text-gray-900 mb-4">สังกัด {{$users[0]->Schools->school}}</h1>
 
 										@include('layout.flash-message')
 										
 									</div>
-                                    @if ($userdatas->status=='OK')
+                                    @if (isset($userdatas) && $userdatas->status=='OK')
                                     <div class="table-responsive">
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th colspan="2">1.Confidential: การปกป้องสารสนเทศให้เข้าถึงได้เฉพาะผู้ที่มีสิทธิ</th>
-                                                </tr>
-                                                <tr>
-                                                    <th>ปัจจัยเสี่ยง</th>
-                                                    <th>ผลการประเมินความเสี่ยง</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                
+                                        <?php
+                                            $score = unserialize(base64_decode($userdatas->answeradmin));
+                                        ?>
+                                        @foreach ($sections as $section)
+                                                <?php
+                                                    $sum_score = 0 ;
+                                                    $num_row = 0 ;
+                                                ?>
                                                 @foreach ($questions as $question)
-                                                    <tr>
-                                                        <td>
-                                                            <p>{{$question->no}}.{{$question->question}}</p>
-                                                        </td>
-                                                        <td>
-                                                            <?php
-                                                                $score = unserialize(base64_decode($userdatas->answeradmin));
-                                                                //echo $score[$question->id];
-                                                                
-                                                                switch ($score[$question->id]) {
-                                                                    case 1:
-                                                                      echo "1 = ความเสี่ยงต่ำ";
-                                                                      break;
-                                                                    case 2:
-                                                                      echo "2 = ความเสี่ยงปานกลาง";
-                                                                      break;
-                                                                    case 3:
-                                                                      echo "3 = ความเสี่ยงสูง";
-                                                                      break;
-                                                                    case 4:
-                                                                      echo "4 = ความเสี่ยงสูงมาก";
-                                                                      break;
-                                                                    default:
-                                                                      echo "ไม่ทราบผล";
-                                                                }
-                                                            ?>
-                                                        </td>
-                                                    </tr>                                                       
-                                                @endforeach
+                                                    
+                                                    @if ($question->section_id==$section->id)
+                                                        <?php
+                                                            $num_row = $num_row + 1 ;
+                                                            $sum_score = $sum_score + $score[$question->id]; 
+                                                        ?>
+                                                    @endif
 
-                                            </tbody>
+                                                @endforeach
+                                                <thead>
+                                                    <tr>
+                                                        <th>ด้านที่ {{ $section->section }}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{$sum_score}}
+                                                                @if($section->id==1)
+                                                                    @if($sum_score<3)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @elseif($sum_score<5)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @elseif($sum_score<7)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score<9)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @endif
+                                                                     <a href="../resultadminquestion/{{$section->id}}">ดูรายละเอียด</a> 
+                                                                @endif
+                                                                @if($section->id==2)
+                                                                    @if($sum_score<7)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @elseif($sum_score<13)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @elseif($sum_score<17)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score<25)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @endif
+                                                                    <a href="../resultadminquestion/{{$section->id}}">ดูรายละเอียด</a> 
+                                                                @endif
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                        @endforeach 
+                                        <tr>
+                                            <th>สรุปผลการประเมินภาพรวม</th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <?php $sum_scr = 0 ; 
+                                                foreach ($score as $scr){
+                                                    $sum_scr = $sum_scr + $scr;
+                                                }
+                                                ?>
+                                                
+                                                    @if($sum_scr<68)
+                                                    <div class="alert alert-success">
+                                                        ความเสี่ยงต่ำ
+                                                    </div>
+                                                    @elseif($sum_scr<135)
+                                                    <div class="alert alert-info">
+                                                        ความเสี่ยงปานกลาง
+                                                    </div>
+                                                    @elseif($sum_scr<202)
+                                                    <div class="alert alert-warning">
+                                                        ความเสี่ยงสูง
+                                                    </div>
+                                                    @elseif($sum_scr<269)
+                                                    <div class="alert alert-danger">
+                                                        ความเสี่ยงสูงมาก
+                                                    </div>
+                                                    @endif
+                                                    <a href="../resultadminchart">ดูรายละเอียด</a>   
+
+                                            </td>
+                                        </tr>
+
                                         </table>
                                     <hr>
                                 </form>

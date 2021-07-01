@@ -43,14 +43,14 @@
 @if(!empty($user[0]))
 @if($user[0]->position_id==1)
   <li class="nav-item">
-    <a class="nav-link collapsed" href="question" >
+    <a class="nav-link collapsed" href="../question" >
       <i class="fas fa-fw fa-cog"></i>
       <span>แบบประเมินความเสี่ยงสำหรับผู้ใช้งานทั่วไป</span>
       
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link collapsed" href="result" >
+    <a class="nav-link collapsed" href="../result" >
       <i class="fas fa-fw fa-cog"></i>
       <span>ผลการประเมินความเสี่ยง</span>
       
@@ -59,13 +59,13 @@
 @endif
 @if($user[0]->position_id==2)
   <li class="nav-item">
-    <a class="nav-link collapsed" href="questionadmin" >
+    <a class="nav-link collapsed" href="../questionadmin" >
       <i class="fas fa-fw fa-cog"></i>
       <span>แบบประเมินความเสี่ยงสำหรับผู้ดูแลระบบสารสนเทศ</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link collapsed" href="resultadmin" >
+    <a class="nav-link collapsed" href="../resultadmin" >
       <i class="fas fa-fw fa-cog"></i>
       <span>ผลการประเมินความเสี่ยง</span>
     </a>

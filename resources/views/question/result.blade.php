@@ -10,7 +10,8 @@
 								<div class="p-5">
 									<div class="text-center">
 										<h1 class="h4 text-gray-900 mb-4">ผลการทำแบบทดสอบ สำหรับผู้ใช้งานทั่วไป</h1>
-										<h1 class="h6 text-gray-900 mb-4">แบบสอบถามชุดนี้ประกอบด้วย 3 เกณฑ์ประกอบหลักในการประเมินความปลอดภัยจากการใช้เทคโนโลยีสารสนเทศ</h1>
+                                        <h1 class="h6 text-gray-900 mb-4">{{$users[0]->prefixName}}{{$users[0]->firstName}} {{$users[0]->lastName}}</h1>
+										<h1 class="h6 text-gray-900 mb-4">สังกัด {{$users[0]->Schools->school}}</h1>
 
 										@include('layout.flash-message')
 										
@@ -18,33 +19,109 @@
                                     @if ($userdatas->status=='OK')
                                     <div class="table-responsive">
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th>เกณฑ์การประเมิน</th>
-                                                    <th>ผลการประเมินอยู่ในระดับ</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1.Confidential: การปกป้องสารสนเทศให้เข้าถึงได้เฉพาะผู้ที่มีสิทธิ (จำนวน 8 ข้อ)</td>
-                                                    <td>Result</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2.Integrity: ปกป้องความถูกต้องสมบูรณ์ของสารสนเทศไม่ให้ถูกแก้ไขเปลี่ยนแปลงผิดไปจากความเป็นจริง (จำนวน 6 ข้อ)</td>
-                                                    <td>Result</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3.Availability : สร้างความเชื่อมั่นว่าระบบสารสนเทศพร้อมใช้งาน (จำนวน 15 ข้อ)</td>
-                                                    <td>Result</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>สรุปผลการประเมินภาพรวม การใช้งานเทคโนโลยีสารสนเทศในองค์กร</td>
-                                                    <td>Result</td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2">ดูรายละเอียดข้อควรปรับปรุงเพื่อลดความเสี่ยงให้น้อยลง</td>
-                                                </tr>
-                                            </tbody>
+                                            <?php
+                                            $score = unserialize(base64_decode($userdatas->answer));
+                                        ?>
+                                        @foreach ($sections as $section)
+                                                <?php
+                                                    $sum_score = 0 ;
+                                                    $num_row = 0 ;
+                                                ?>
+                                                @foreach ($questions as $question)
+                                                    
+                                                    @if ($question->section_id==$section->id)
+                                                        <?php
+                                                            $num_row = $num_row + 1 ;
+                                                            $sum_score = $sum_score + $score[$question->id]; 
+                                                        ?>
+                                                    @endif
+
+                                                @endforeach
+                                                <thead>
+                                                    <tr>
+                                                        <th>ด้านที่ {{ $section->section }}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{$sum_score}}
+                                                                @if($section->id==1)
+                                                                    @if($sum_score<3)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @elseif($sum_score<5)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @elseif($sum_score<7)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score<9)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @endif
+                                                                     <a href="../resultquestion/{{$section->id}}">ดูรายละเอียด</a> 
+                                                                @endif
+                                                                @if($section->id==2)
+                                                                    @if($sum_score<7)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @elseif($sum_score<13)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @elseif($sum_score<17)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score<25)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @endif
+                                                                    <a href="../resultquestion/{{$section->id}}">ดูรายละเอียด</a> 
+                                                                @endif
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                        @endforeach 
+                                        <tr>
+                                            <th>สรุปผลการประเมินภาพรวม</th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <?php $sum_scr = 0 ; 
+                                                foreach ($score as $scr){
+                                                    $sum_scr = $sum_scr + $scr;
+                                                }
+                                                ?>
+                                                
+                                                    @if($sum_scr<68)
+                                                    <div class="alert alert-success">
+                                                        ความเสี่ยงต่ำ
+                                                    </div>
+                                                    @elseif($sum_scr<135)
+                                                    <div class="alert alert-info">
+                                                        ความเสี่ยงปานกลาง
+                                                    </div>
+                                                    @elseif($sum_scr<202)
+                                                    <div class="alert alert-warning">
+                                                        ความเสี่ยงสูง
+                                                    </div>
+                                                    @elseif($sum_scr<269)
+                                                    <div class="alert alert-danger">
+                                                        ความเสี่ยงสูงมาก
+                                                    </div>
+                                                    @endif
+                                                    <a href="../resultchart">ดูรายละเอียด</a>   
+
+                                            </td>
+                                        </tr>
                                         </table>
                                         <hr>
                                         </form>
