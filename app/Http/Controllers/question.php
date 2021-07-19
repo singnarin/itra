@@ -157,4 +157,20 @@ class question extends Controller
             ->with('userdatas', $userdatas);
         }
       }
+
+  public function confidential(){
+    $user = Session::get('user');
+    if(empty($user)){
+      return View('site.login');
+    }else{
+        $questions = Questions::where('section_id', '=', '1')->get();
+        $sections = Sections::all();
+        $userdatas=Users::find(Session::get('user')[0]->id);
+        return View('question.confidential')
+        ->with('questions', $questions)
+        ->with('sections', $sections)
+        ->with('userdatas', $userdatas);
+    }
+  }
+
 }

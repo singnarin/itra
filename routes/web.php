@@ -30,4 +30,6 @@ Route::get('report', 'admin@report');
 
 Route::get('profile', 'user@profile');
 
+Route::get('confidential', 'question@confidential');
+
 

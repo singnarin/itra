@@ -73,16 +73,30 @@
 @endif
 @if($user[0]->position_id==3)
   <li class="nav-item">
-    <a class="nav-link collapsed" href="question" >
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
       <i class="fas fa-fw fa-cog"></i>
       <span>แบบประเมินความเสี่ยงสำหรับผู้ใช้งานทั่วไป</span>
     </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" href="../confidential">Confidential</a>
+        <a class="collapse-item" href="../integrity">Integrity</a>
+        <a class="collapse-item" href="../availability">Availability</a>
+      </div>
+    </div>
   </li>
   <li class="nav-item">
-    <a class="nav-link collapsed" href="questionadmin" >
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
       <i class="fas fa-fw fa-cog"></i>
       <span>แบบประเมินความเสี่ยงสำหรับผู้ดูแลระบบสารสนเทศ</span>
     </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" href="../confidential">1.นโยบายความมั่นคง...</a>
+        <a class="collapse-item" href="../integrity">2.โครงสร้างความมั่นคง...</a>
+        <a class="collapse-item" href="../availability">3.ความมั่นคงปลอดภัย...</a>
+      </div>
+    </div>
   </li>
   <li class="nav-item">
     <a class="nav-link collapsed" href="report" >
