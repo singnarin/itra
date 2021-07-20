@@ -41,6 +41,7 @@
   </li>
 -->
 @if(!empty($user[0]))
+<!-- //***************General User Test************* -->
 @if($user[0]->position_id==1)
   <li class="nav-item">
     <a class="nav-link collapsed" href="../question" >
@@ -57,6 +58,7 @@
     </a>
   </li>
 @endif
+<!-- //***************System Admin Test************* -->
 @if($user[0]->position_id==2)
   <li class="nav-item">
     <a class="nav-link collapsed" href="../questionadmin" >
@@ -71,6 +73,7 @@
     </a>
   </li>
 @endif
+<!-- //*********Admin Back End***************** -->
 @if($user[0]->position_id==3)
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -82,6 +85,7 @@
         <a class="collapse-item" href="../confidential">Confidential</a>
         <a class="collapse-item" href="../integrity">Integrity</a>
         <a class="collapse-item" href="../availability">Availability</a>
+        <a class="collapse-item" href="../addQuestion">เพิ่มข้อคำถาม</a>
       </div>
     </div>
   </li>
@@ -105,6 +109,7 @@
     </a>
   </li>
 @endif
+
 @else
 <li class="nav-item">
   <a class="nav-link collapsed" href="loginForm" >

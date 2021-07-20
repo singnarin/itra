@@ -15,7 +15,7 @@
                                     
                                     @if ($user[0]->position_id==3)
                                     <div class="text-left">
-										<a href="addConfidential"><button id="button" type="button" class="btn btn-success">เพิ่มคำถาม</button></a> 
+										<a href="addQuestion"><button id="button" type="button" class="btn btn-success">เพิ่มคำถาม</button></a> 
 									</div>
                                     @endif
                                     
@@ -34,7 +34,15 @@
                                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                                     <thead>
                                                         <tr>
+                                                            @if(!empty($questions[0]) && $questions[0]->section_id==1)
                                                             <th>Confidential: การปกป้องสารสนเทศให้เข้าถึงได้เฉพาะผู้ที่มีสิทธิ</th>
+                                                            @endif
+                                                            @if(!empty($questions[0]) && $questions[0]->section_id==2)
+                                                            <th>Integrity: ปกป้องความถูกต้องสมบูรณ์ของสารสนเทศไม่ให้ถูกแก้ไขเปลี่ยนแปลงผิดไปจากความเป็นจริง</th>
+                                                            @endif
+                                                            @if(!empty($questions[0]) && $questions[0]->section_id==3)
+                                                            <th>Availability : สร้างความเชื่อมั่นว่าระบบสารสนเทศพร้อมใช้งาน</th>
+                                                            @endif
                                                         </tr>
                                                     </thead>
                                                 <tbody>

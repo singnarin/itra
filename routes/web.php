@@ -8,7 +8,7 @@ Route::any('regis', 'index@regis');
 Route::any('login', 'index@login');
 Route::any('logout', 'index@logout');
 
-Route::get('question', 'question@question');
+//Route::get('question/{id?}', 'question@question');
 Route::any('answer', 'question@answer');
 Route::any('addQuestion', 'question@addQuestion');
 Route::any('deleteQuestion', 'question@deleteQuestion');
@@ -31,5 +31,7 @@ Route::get('report', 'admin@report');
 Route::get('profile', 'user@profile');
 
 Route::get('confidential', 'question@confidential');
+Route::get('integrity', 'question@integrity');
+Route::get('availability', 'question@availability');
 
 

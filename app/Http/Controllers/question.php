@@ -12,7 +12,7 @@ use App\Http\Requests;
 
 class question extends Controller
 {
-    public function question(){
+    /*public function question(){
         $user = Session::get('user');
         if(empty($user)){
           return View('site.login');
@@ -25,7 +25,7 @@ class question extends Controller
             ->with('sections', $sections)
             ->with('userdatas', $userdatas);
         }
-      }
+      }*/
 
       public function editQuestion(Request $request){
         $user = Session::get('user');
@@ -74,12 +74,7 @@ class question extends Controller
                     $questions->section_id = $request->get('section_id');
                   }
                   if($questions->save()){
-                    $questions = Questions::all();
-                    $sections = Sections::all();
-                    return View('question.question')
-                    ->with('success','เรียบร้อย')
-                    ->with('sections', $sections)
-                    ->with('questions', $questions);
+                    return redirect('../addQuestion')->with('success','เรียบร้อย'); 
                   }
           }
             return View('question.addQuestion')
@@ -164,6 +159,34 @@ class question extends Controller
       return View('site.login');
     }else{
         $questions = Questions::where('section_id', '=', '1')->get();
+        $sections = Sections::all();
+        $userdatas=Users::find(Session::get('user')[0]->id);
+        return View('question.confidential')
+        ->with('questions', $questions)
+        ->with('sections', $sections)
+        ->with('userdatas', $userdatas);
+    }
+  }
+  public function integrity(){
+    $user = Session::get('user');
+    if(empty($user)){
+      return View('site.login');
+    }else{
+        $questions = Questions::where('section_id', '=', '2')->get();
+        $sections = Sections::all();
+        $userdatas=Users::find(Session::get('user')[0]->id);
+        return View('question.confidential')
+        ->with('questions', $questions)
+        ->with('sections', $sections)
+        ->with('userdatas', $userdatas);
+    }
+  }
+  public function availability(){
+    $user = Session::get('user');
+    if(empty($user)){
+      return View('site.login');
+    }else{
+        $questions = Questions::where('section_id', '=', '3')->get();
         $sections = Sections::all();
         $userdatas=Users::find(Session::get('user')[0]->id);
         return View('question.confidential')
