@@ -26,18 +26,18 @@ class index extends Controller
       }
 
       public function regis(Request $request){
-        if(empty($request->get('userId'))){
-          return back()->with('error','กรุณาใส่เลขบัตรประจำตัวประชาชน');
+        if(empty($request->get('email'))){
+          return back()->with('error','กรุณาใส่ Email');
         }else{
-          $check=Users::find($request->get('userId'));
+          $check=Users::find($request->get('email'));
         }
         
         if(empty($check)){
           $users = new Users;
-          $users->id=$request->get('userId');
+          $users->id=$request->get('email');
         }else{
           echo '<script language="javascript">';
-          echo 'alert("หมายเลขบัตรประจำตัวประชาชนนี้ได้ทำการลงทะเบียนไว้แล้ว");window.location = "../login"';
+          echo 'alert("Email นี้ได้ทำการลงทะเบียนไว้แล้ว");window.location = "../loginForm"';
           echo '</script>';
         }
 
@@ -59,11 +59,10 @@ class index extends Controller
           $users->prefixName = $request->get('prefixName');
           $users->firstName = $request->get('firstName');
           $users->lastName = $request->get('lastName');
-          $users->phone = $request->get('phone');
           $users->school_id = $request->get('school_id');
           $users->province_id = $request->get('province_id');
           $users->position_id = $request->get('position_id');
-          $users->email = $request->get('email');
+          //$users->email = $request->get('email');
           if($request->get('password')==$request->get('repeatPassword')){
             $users->password = $request->get('password');
           }else{
@@ -96,7 +95,7 @@ class index extends Controller
         }else{
           $email = $request->get('email');
           $password = $request->get('password');
-          $user = Users::where('email', '=', $email)
+          $user = Users::where('id', '=', $email)
             ->where('password', '=', $password)
             ->get();
             if(!empty($user[0])){

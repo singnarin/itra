@@ -8,7 +8,11 @@ Route::any('regis', 'index@regis');
 Route::any('login', 'index@login');
 Route::any('logout', 'index@logout');
 
-//Route::get('question/{id?}', 'question@question');
+Route::get('informationForm', 'user@informationForm');
+Route::get('information', 'user@information');
+Route::any('informationAdd', 'user@informationAdd');
+
+Route::get('question', 'question@question');
 Route::any('answer', 'question@answer');
 Route::any('addQuestion', 'question@addQuestion');
 Route::any('deleteQuestion', 'question@deleteQuestion');

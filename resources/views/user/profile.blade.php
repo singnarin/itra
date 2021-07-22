@@ -33,12 +33,6 @@
                                                     <td>นามสกุล : {{$user[0]->lastName}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>โทรศัพท์ : {{$user[0]->phone}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>เลขบัตรประจำตัวประชาชน : {{$user[0]->id}}</td>
-                                                </tr>
-                                                <tr>
                                                     <td>สังกัดสถานศึกษา : {{$user[0]->schools->school}}</td>
                                                 </tr>
                                                 <tr>

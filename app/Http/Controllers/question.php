@@ -12,7 +12,7 @@ use App\Http\Requests;
 
 class question extends Controller
 {
-    /*public function question(){
+    public function question(){
         $user = Session::get('user');
         if(empty($user)){
           return View('site.login');
@@ -25,7 +25,7 @@ class question extends Controller
             ->with('sections', $sections)
             ->with('userdatas', $userdatas);
         }
-      }*/
+      }
 
       public function editQuestion(Request $request){
         $user = Session::get('user');

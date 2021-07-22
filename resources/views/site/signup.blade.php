@@ -31,17 +31,6 @@
 													placeholder="นามสกุล">
 											</div>
 										</div>
-										<div class="form-group row">											
-											<div class="col-sm-6 mb-3 mb-sm-0">
-												<input type="text" class="form-control form-control-user" id="phone" name="phone"
-													placeholder="โทรศัพท์">
-											</div>
-											<div class="col-sm-6">
-												<input type="text" class="form-control form-control-user" id="userId" name="userId"
-													placeholder="เลขบัตรประจำตัวประชาชน" maxlength="13">
-												<span class="error"></span>
-											</div>
-										</div>
 										<div class="form-group row">
 											<div class="col-sm-4 mb-3 mb-sm-0">
 												{!! Form::select('school_id',[null=>':: สถานศึกษา ::'] + \App\Schools::pluck('school','id')->toArray(), null, array('class'=>'form-control')) !!} 
