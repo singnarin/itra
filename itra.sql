@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.6.6deb5ubuntu0.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 11 มิ.ย. 2021 เมื่อ 06:40 AM
--- เวอร์ชันของเซิร์ฟเวอร์: 10.4.10-MariaDB
--- PHP Version: 7.1.33
+-- Host: localhost:3306
+-- Generation Time: Jul 23, 2021 at 03:10 AM
+-- Server version: 5.7.34-0ubuntu0.18.04.1
+-- PHP Version: 7.2.24-0ubuntu0.18.04.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -25,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- โครงสร้างตาราง `positions`
+-- Table structure for table `positions`
 --
 
 CREATE TABLE `positions` (
@@ -34,7 +32,7 @@ CREATE TABLE `positions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- dump ตาราง `positions`
+-- Dumping data for table `positions`
 --
 
 INSERT INTO `positions` (`id`, `positionName`) VALUES
@@ -44,7 +42,7 @@ INSERT INTO `positions` (`id`, `positionName`) VALUES
 -- --------------------------------------------------------
 
 --
--- โครงสร้างตาราง `provinces`
+-- Table structure for table `provinces`
 --
 
 CREATE TABLE `provinces` (
@@ -52,11 +50,11 @@ CREATE TABLE `provinces` (
   `code` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
   `name_th` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `name_en` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `geography_id` int(5) NOT NULL DEFAULT 0
+  `geography_id` int(5) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- dump ตาราง `provinces`
+-- Dumping data for table `provinces`
 --
 
 INSERT INTO `provinces` (`id`, `code`, `name_th`, `name_en`, `geography_id`) VALUES
@@ -141,7 +139,7 @@ INSERT INTO `provinces` (`id`, `code`, `name_th`, `name_en`, `geography_id`) VAL
 -- --------------------------------------------------------
 
 --
--- โครงสร้างตาราง `questionadmins`
+-- Table structure for table `questionadmins`
 --
 
 CREATE TABLE `questionadmins` (
@@ -155,21 +153,10 @@ CREATE TABLE `questionadmins` (
   `answer4` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- dump ตาราง `questionadmins`
---
-
-INSERT INTO `questionadmins` (`id`, `no`, `question`, `answer1`, `section_id`, `answer2`, `answer3`, `answer4`) VALUES
-(1, '1', 'admin ระบบเครือข่ายอินเตอร์เน็ตในองค์กรกำหนดให้ท่านต้อง Login ด้วย User name Password ทุกครั้งที่มีการเชื่อมต่อหรือไม่', 'ใช่ ต้องทำการ Login ก่อนทุกครั้ง และต้อง Login ใหม่เมื่อ Session หมดอายุ|1', '1', 'ใช่ ต้องทำการ Login ก่อนทุกครั้ง และใช้งานได้ตลอด|2', 'ใช้ Username และ Password ของเพื่อนร่วมงานในการ Login|3', 'ไม่ต้องทำการ login ก็สามารถเข้าใช้ได้ทันที|4'),
-(2, '2', 'admin องค์กรอนุญาตให้ท่านสามารถนำอุปกรณ์อิเล็กทรอนิกส์ ที่สามารถเชื่อมต่อกับระบบเครือข่ายอินเตอร์เน็ตภายในองค์กร ใช้งานได้หรือไม่', 'ได้ ไม่เกินคนละ 1 อุปกรณ์ แต่ต้องลงทะเบียนกับองค์กรก่อนใช้งาน|1', '1', 'ได้ ไม่จำกัดจำนวน แต่ต้องนำมาลงทะเบียนกับองค์กรก่อนใช้งาน|2', 'ได้ไม่เกินคนละ 2 อุปกรณ์ ใช้ได้ทันที|3', 'ไม่มีข้อห้ามใดๆนำมาก็ใช้ได้เลย|4'),
-(3, '3', 'admin ทุกครั้งที่มีการเข้าใช้งาน Website ต่าง ๆ ที่มีการ Login ด้วยชื่อผู้ใช้งานและรหัสผ่านท่านจะจัดเก็บรหัสผ่านด้วยวิธีใด', 'บันทึกด้วยความทรงจำ|1', '1', 'บันทึกไว้ที่เป็นความลับเฉพาะท่านที่ทราบ|2', 'บันทึกไว้ในสมุดโน๊ตที่ท่านและเพื่อนร่วมงานคนสนิทเท่านั้นที่ทราบ|3', 'เขียนโน้ตแปะไว้หน้าจอคอมพิวเตอร์|4'),
-(5, '4', 'admin ท่านได้ปฏิบัติตามข้อกำหนดหรือนโยบายเกี่ยวกับการรักษาความปลอดภัยจากการใช้เทคโนโลยีสารสนเทศในองค์กร', 'ปฏิบัติตามอย่างเคร่งครัด|1', '1', 'ปฏิบัติตามไม่ครบทุกข้อ|2', 'ปฏิบัติตามทุกครั้งที่มีการตรวจสอบ|3', 'เฉยๆ เพราะไม่มีใครตรวจสอบ|4'),
-(15, '5', 'admin ท่านทราบหรือไม่ว่า องค์กรมีการจัดทำแผนพัฒนาระบบสารสนเทศในองค์กรประจำปีหรือไม่', 'ทราบ มีแผนการจัดทำทุกปีงบประมาณ|1', '1', 'ทราบว่ามีแผน แต่ไม่รู้ว่าหรือไม่|2', 'ไม่ทราบ ไม่แน่ใจ|3', 'ไม่มี|4');
-
 -- --------------------------------------------------------
 
 --
--- โครงสร้างตาราง `questions`
+-- Table structure for table `questions`
 --
 
 CREATE TABLE `questions` (
@@ -184,20 +171,20 @@ CREATE TABLE `questions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- dump ตาราง `questions`
+-- Dumping data for table `questions`
 --
 
 INSERT INTO `questions` (`id`, `no`, `question`, `answer1`, `section_id`, `answer2`, `answer3`, `answer4`) VALUES
-(1, '1', 'ระบบเครือข่ายอินเตอร์เน็ตในองค์กรกำหนดให้ท่านต้อง Login ด้วย User name Password ทุกครั้งที่มีการเชื่อมต่อหรือไม่', 'ใช่ ต้องทำการ Login ก่อนทุกครั้ง และต้อง Login ใหม่เมื่อ Session หมดอายุ|1', '1', 'ใช่ ต้องทำการ Login ก่อนทุกครั้ง และใช้งานได้ตลอด|2', 'ใช้ Username และ Password ของเพื่อนร่วมงานในการ Login|3', 'ไม่ต้องทำการ login ก็สามารถเข้าใช้ได้ทันที|4'),
-(2, '2', 'องค์กรอนุญาตให้ท่านสามารถนำอุปกรณ์อิเล็กทรอนิกส์ ที่สามารถเชื่อมต่อกับระบบเครือข่ายอินเตอร์เน็ตภายในองค์กร ใช้งานได้หรือไม่', 'ได้ ไม่เกินคนละ 1 อุปกรณ์ แต่ต้องลงทะเบียนกับองค์กรก่อนใช้งาน|1', '1', 'ได้ ไม่จำกัดจำนวน แต่ต้องนำมาลงทะเบียนกับองค์กรก่อนใช้งาน|2', 'ได้ไม่เกินคนละ 2 อุปกรณ์ ใช้ได้ทันที|3', 'ไม่มีข้อห้ามใดๆนำมาก็ใช้ได้เลย|4'),
-(3, '3', 'ทุกครั้งที่มีการเข้าใช้งาน Website ต่าง ๆ ที่มีการ Login ด้วยชื่อผู้ใช้งานและรหัสผ่านท่านจะจัดเก็บรหัสผ่านด้วยวิธีใด', 'บันทึกด้วยความทรงจำ|1', '1', 'บันทึกไว้ที่เป็นความลับเฉพาะท่านที่ทราบ|2', 'บันทึกไว้ในสมุดโน๊ตที่ท่านและเพื่อนร่วมงานคนสนิทเท่านั้นที่ทราบ|3', 'เขียนโน้ตแปะไว้หน้าจอคอมพิวเตอร์|4'),
-(5, '4', 'ท่านได้ปฏิบัติตามข้อกำหนดหรือนโยบายเกี่ยวกับการรักษาความปลอดภัยจากการใช้เทคโนโลยีสารสนเทศในองค์กร', 'ปฏิบัติตามอย่างเคร่งครัด|1', '1', 'ปฏิบัติตามไม่ครบทุกข้อ|2', 'ปฏิบัติตามทุกครั้งที่มีการตรวจสอบ|3', 'เฉยๆ เพราะไม่มีใครตรวจสอบ|4'),
-(15, '5', 'ท่านทราบหรือไม่ว่า องค์กรมีการจัดทำแผนพัฒนาระบบสารสนเทศในองค์กรประจำปีหรือไม่', 'ทราบ มีแผนการจัดทำทุกปีงบประมาณ|1', '1', 'ทราบว่ามีแผน แต่ไม่รู้ว่าหรือไม่|2', 'ไม่ทราบ ไม่แน่ใจ|3', 'ไม่มี|4');
+(35, '1', 'ระบบเครือข่ายอินเตอร์เน็ตในองค์กรกำหนดให้ท่านต้อง Login ด้วย User name Password ทุกครั้งที่มีการเชื่อมต่อหรือไม่', 'กำหนดให้ต้องทำการ Login ก่อนทุกครั้ง||1', '1', 'Log in ครั้งเดียวก็สามารถเข้าใช้งานได้ตลอด||2', 'Log in บ้างเป็นบางครั้ง||3', 'สามารถเข้าใช้ได้ทันทีที่มีการเชื่อมต่อ โดยไม่ต้องทำการ logi||4'),
+(36, '2', 'องค์กรอนุญาตให้ท่านสามารถนำอุปกรณ์อิเล็กทรอนิกส์ ที่สามารถเชื่อมต่อกับระบบเครือข่ายอินเตอร์เน็ตภายในองค์กร ใช้งานได้หรือไม่', '	ไม่อนุญาตให้นำมาใช้ในงานองค์กร||', '1', '	อนุญาตให้นำมาใช้ได้ แต่ต้องทำการแจ้งลงทะเบียนและรับรหัสการใช้งานก่อน||', '	สามารถนำมาใช้งานได้คนละไม่เกิน 2 เครื่อง||', '	ไม่มีข้อห้ามใดๆ ใครจะเอามาใช้ก็ได้และสามารถเชื่อมต่อระบบอินเตอร์เน็ตได้ทันที||'),
+(37, '3', 'ทุกครั้งที่มีการเข้าใช้งาน Website ต่าง ๆ ที่มีการ Log in ด้วยชื่อผู้ใช้งานและรหัสผ่านท่านจะจัดเก็บรหัสผ่านด้วยวิธีใด', 'บันทึกไว้ที่เป็นความลับเฉพาะท่านเท่านั้นที่ทราบ||1', '1', 'บันทึกไว้ในกระดาษหรือสมุดโน๊ตที่ที่ทำงานวางอยู่บนโต๊ะนั้นแหละ||2', 'เขียนโน้ตแปะไว้หน้าจอคอมพิวเตอร์กันลืม||3', 'บันทึกไว้ในเครื่องที่ใช้งานในหน้าเว็บนั้นๆ เมื่อเข้าใช้งานก็สามารถ Log in อัตโนมัติ||4'),
+(38, '4', 'ท่านได้ปฏิบัติตามข้อกำหนดหรือนโยบายเกี่ยวกับการรับษาความปลอดภัยจากการใช้เทคโนโลยีสารสนเทศในองค์กร', '	ปฏิบัติตามอย่างเคร่งครัด|1', '1', '	ปฏิบัติตามได้ไม่ครบทุกข้อ|2', '	ปฏิบัติตามทุกครั้งที่มีการตรวจสอบ|3', '	ไม่มีการปฏิบัติ เนื่องจากองค์กรไม่มีนโยบาย|4'),
+(39, '5', 'ท่านทราบหรือไม่ว่า องค์กรมีการจัดทำแผนพัฒนาระบบสารสนเทศในองค์กรประจำปีหรือไม่', 'ทราบ มีแผนการจัดทำทุกปีงบประมาณ|1', '1', 'ทราบว่ามีแผน แต่ไม่รู้ว่าได้มีการทำมั่ย|2', 'ไม่แน่ใจ|3', 'ไม่มี|4');
 
 -- --------------------------------------------------------
 
 --
--- โครงสร้างตาราง `schools`
+-- Table structure for table `schools`
 --
 
 CREATE TABLE `schools` (
@@ -206,7 +193,7 @@ CREATE TABLE `schools` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- dump ตาราง `schools`
+-- Dumping data for table `schools`
 --
 
 INSERT INTO `schools` (`id`, `school`) VALUES
@@ -223,7 +210,7 @@ INSERT INTO `schools` (`id`, `school`) VALUES
 -- --------------------------------------------------------
 
 --
--- โครงสร้างตาราง `sectionadmins`
+-- Table structure for table `sectionadmins`
 --
 
 CREATE TABLE `sectionadmins` (
@@ -231,10 +218,30 @@ CREATE TABLE `sectionadmins` (
   `section` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `sectionadmins`
+--
+
+INSERT INTO `sectionadmins` (`id`, `section`) VALUES
+(1, '1.นโยบายความมั่นคงปลอดภัยสารสนเทศ '),
+(2, '2.โครงสร้างความมั่นคงปลอดภัยสารสนเทศองค์กร'),
+(3, '3.ความมั่นคงปลอดภัยสำหรับบุคลากร'),
+(4, '4.การบริหารจัดการทรัพย์สิน'),
+(5, '5.การควบคุมการเข้าถึง (Access control)'),
+(6, '6.การเข้ารหัสข้อมูล'),
+(7, '7.ความมั่นคงปลอดภัยทางกายภาพและสภาพแวดล้อม'),
+(8, '8.ความมั่นคงปลอดภัยสำหรับการดําเนินงาน'),
+(9, '9.ความมั่นคงปลอดภัยสำหรับการสื่อสารข้อมูล'),
+(10, '10.การจัดหา การพัฒนา และการบำรุงรักษาระบบ'),
+(11, '11.ความสัมพันธ์กับผู้ขาย ผู้ให้บริการภายนอก'),
+(12, '12.การบริหารจัดการเหตุการณ์ความมั่นคงปลอดภัยสารสนเทศ'),
+(13, '13.ประเด็นด้านความมั่นคงปลอดภัยสารสนเทศของการบริหารจัดการเพื่อสร้างความต่อเนื่องทางธุรกิจ'),
+(14, '14.ความสอดคล้อง');
+
 -- --------------------------------------------------------
 
 --
--- โครงสร้างตาราง `sections`
+-- Table structure for table `sections`
 --
 
 CREATE TABLE `sections` (
@@ -243,7 +250,7 @@ CREATE TABLE `sections` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- dump ตาราง `sections`
+-- Dumping data for table `sections`
 --
 
 INSERT INTO `sections` (`id`, `section`) VALUES
@@ -254,34 +261,39 @@ INSERT INTO `sections` (`id`, `section`) VALUES
 -- --------------------------------------------------------
 
 --
--- โครงสร้างตาราง `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
-  `id` varchar(13) NOT NULL,
+  `id` varchar(250) NOT NULL,
   `prefixName` varchar(50) NOT NULL,
   `firstName` varchar(250) NOT NULL,
   `lastName` varchar(250) NOT NULL,
-  `phone` varchar(20) NOT NULL,
+  `phone` varchar(20) DEFAULT NULL,
   `school_id` varchar(10) NOT NULL,
   `province_id` varchar(50) NOT NULL,
   `position_id` varchar(50) NOT NULL,
-  `email` varchar(250) NOT NULL,
+  `email` varchar(250) DEFAULT NULL,
   `password` varchar(200) NOT NULL,
   `permit` varchar(20) DEFAULT NULL,
-  `question_id` varchar(10) DEFAULT NULL,
-  `answer` text DEFAULT NULL,
-  `answeradmin` text DEFAULT NULL
+  `status` varchar(10) DEFAULT NULL,
+  `answer` text,
+  `answeradmin` text,
+  `position` varchar(250) DEFAULT NULL,
+  `age` varchar(250) DEFAULT NULL,
+  `sex` varchar(250) DEFAULT NULL,
+  `education` varchar(250) DEFAULT NULL,
+  `work` varchar(250) DEFAULT NULL,
+  `computer` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- dump ตาราง `users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `prefixName`, `firstName`, `lastName`, `phone`, `school_id`, `province_id`, `position_id`, `email`, `password`, `permit`, `question_id`, `answer`, `answeradmin`) VALUES
-('1560100096259', 'xxxx', 'xxxxx', 'xxxxx', '0819507293', '1', '15', '3', 'singnarin@pyo1.go.th', '1111', 'admin', NULL, NULL, ''),
-('7315998568260', 'นางสาว', 'admin', 'ผู้ดูแลระบบ', '9999999999', '7', '3', '2', 'admin@itra.org', '1234', NULL, NULL, NULL, NULL),
-('8332221857944', 'นาย', 'รูปหล่อ', 'ใจดี', '9999999999', '1', '1', '1', 'singnarin@gmail.com', '1111', NULL, NULL, 'YTo1OntpOjE7czoxOiIxIjtpOjI7czoxOiIyIjtpOjM7czoxOiIzIjtpOjU7czoxOiI0IjtpOjE1O3M6MToiNCI7fQ==', 'YTo1OntpOjE7czoxOiI0IjtpOjI7czoxOiI0IjtpOjM7czoxOiIzIjtpOjU7czoxOiIyIjtpOjE1O3M6MToiMSI7fQ==');
+INSERT INTO `users` (`id`, `prefixName`, `firstName`, `lastName`, `phone`, `school_id`, `province_id`, `position_id`, `email`, `password`, `permit`, `status`, `answer`, `answeradmin`, `position`, `age`, `sex`, `education`, `work`, `computer`) VALUES
+('admin@itra.org', 'นางสาว', 'admin', 'ผู้ดูแลระบบ', '9999999999', '7', '3', '3', 'admin@itra.org', '1234', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('general@itra.org', 'นาย', 'ผู้ใช้งานทั่วไป', 'นะจ๊ะ', NULL, '1', '19', '1', NULL, '1234', NULL, NULL, NULL, NULL, 'เจ้าหน้าที่ปฏิบัติงานทั่วไปในองค์กร/หรือสำนักงาน', 'ระหว่าง 20-30 ปี', 'ชาย', 'ต่ำกว่าปริญญาตรี', '5-10 ปี', 'มี ของที่ทำงานและส่วนตัว');
 
 --
 -- Indexes for dumped tables
@@ -344,44 +356,36 @@ ALTER TABLE `users`
 --
 ALTER TABLE `positions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `provinces`
 --
 ALTER TABLE `provinces`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
-
 --
 -- AUTO_INCREMENT for table `questionadmins`
 --
 ALTER TABLE `questionadmins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT for table `schools`
 --
 ALTER TABLE `schools`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
 --
 -- AUTO_INCREMENT for table `sectionadmins`
 --
 ALTER TABLE `sectionadmins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

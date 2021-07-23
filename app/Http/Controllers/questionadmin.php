@@ -77,10 +77,7 @@ class questionadmin extends Controller
                     $questions = Questionadmins::all();
                     $sections = Sectionadmins::all();
                     $userdatas=Users::find(Session::get('user')[0]->id);
-                    return View('question.questionadmin')->with('success','เรียบร้อย')
-                    ->with('questions', $questions)
-                    ->with('sections', $sections)
-                    ->with('userdatas', $userdatas);
+                    return redirect('../addQuestionadmin')->with('success','เรียบร้อย'); 
                   }
           }
           $userdatas=Users::find(Session::get('user')[0]->id);
@@ -160,4 +157,21 @@ class questionadmin extends Controller
             ->with('userdatas', $userdatas);
         }
       }
+
+      public function one(Request $request){
+        $user = Session::get('user');
+        if(empty($user)){
+          return View('site.login');
+        }else{
+            $questions = Questionadmins::where('section_id', '=', $request->get('section_id'))->get();
+            $sections = Sectionadmins::all();
+            $userdatas=Users::find(Session::get('user')[0]->id);
+            return View('question.one')
+            ->with('questions', $questions)
+            ->with('sections', $sections)
+            ->with('section_id', $request->get('section_id')-1)
+            ->with('userdatas', $userdatas);
+        }
+      }
+
 }

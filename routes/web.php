@@ -38,4 +38,6 @@ Route::get('confidential', 'question@confidential');
 Route::get('integrity', 'question@integrity');
 Route::get('availability', 'question@availability');
 
+Route::any('one', 'questionadmin@one');
+
 

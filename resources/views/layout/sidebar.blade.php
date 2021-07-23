@@ -108,11 +108,29 @@
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="../confidential">1.นโยบายความมั่นคง...</a>
-        <a class="collapse-item" href="../integrity">2.โครงสร้างความมั่นคง...</a>
-        <a class="collapse-item" href="../availability">3.ความมั่นคงปลอดภัย...</a>
+        <a class="collapse-item" href="../one?section_id=1">1.นโยบายความมั่นคง...</a>
+        <a class="collapse-item" href="../one?section_id=2">2.โครงสร้างความมั่นคง...</a>
+        <a class="collapse-item" href="../one?section_id=3">3.ความมั่นคงปลอดภัย...</a>
+        <a class="collapse-item" href="../one?section_id=4">4.การบริหารจัดการทรัพย์สิน</a>
+        <a class="collapse-item" href="../one?section_id=5">5.การควบคุมการเข้าถึง...</a>
+        <a class="collapse-item" href="../one?section_id=6">6.การเข้ารหัสข้อมูล...</a>
+        <a class="collapse-item" href="../one?section_id=7">7.ความมั่นคงปลอดภัย...</a>
+        <a class="collapse-item" href="../one?section_id=8">8.ความมั่นคงปลอดภัย...</a>
+        <a class="collapse-item" href="../one?section_id=9">9.ความมั่นคงปลอดภัย...</a>
+        <a class="collapse-item" href="../one?section_id=10">10.การจัดหา การพัฒนา...</a>
+        <a class="collapse-item" href="../one?section_id=11">11.ความสัมพันธ์...</a>
+        <a class="collapse-item" href="../one?section_id=12">12.การบริหารจัดการ...</a>
+        <a class="collapse-item" href="../one?section_id=13">13.ประเด็นด้านความมั่นคง...</a>
+        <a class="collapse-item" href="../one?section_id=14">14.ความสอดคล้อง...</a>
+        <a class="collapse-item" href="../addQuestionadmin">เพิ่มข้อคำถาม</a>
       </div>
     </div>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="report" >
+      <i class="fas fa-fw fa-cog"></i>
+      <span>สมาชิกผู้ใช้งาน</span>
+    </a>
   </li>
   <li class="nav-item">
     <a class="nav-link collapsed" href="report" >

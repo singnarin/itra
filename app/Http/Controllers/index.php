@@ -72,7 +72,7 @@ class index extends Controller
         }
         
           if($users->save()){
-            return back()->with('success','ลงทะเบียนเรียบร้อยแล้ว');
+            return Redirect('../loginForm')->with('success','ลงทะเบียนเรียบร้อยแล้ว');
           }
       
         }
