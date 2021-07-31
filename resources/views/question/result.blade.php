@@ -32,7 +32,7 @@
                                                     @if ($question->section_id==$section->id)
                                                         <?php
                                                             $num_row = $num_row + 1 ;
-                                                            $sum_score = $sum_score + $score[$question->id]; 
+                                                            $sum_score = $sum_score + is_numeric($score[$question->id]); 
                                                         ?>
                                                     @endif
 
@@ -97,7 +97,7 @@
                                             <td>
                                                 <?php $sum_scr = 0 ; 
                                                 foreach ($score as $scr){
-                                                    $sum_scr = $sum_scr + $scr;
+                                                    $sum_scr = $sum_scr + is_numeric($scr);
                                                 }
                                                 ?>
                                                 

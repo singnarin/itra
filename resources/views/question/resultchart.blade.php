@@ -23,7 +23,7 @@
                                                     
                                                     if ($question->section_id==$st->id){
                                                             $num_row = $num_row + 1 ;
-                                                            $sum_score = $sum_score + $score[$question->id]; 
+                                                            $sum_score = $sum_score + is_numeric($score[$question->id]); 
                                                     }
 
                                                 }

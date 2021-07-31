@@ -31,6 +31,8 @@ Route::any('resultadminchart', 'questionadmin@resultchart');
 Route::any('resultadminquestion/{id?}', 'questionadmin@resultquestion');
 
 Route::get('report', 'admin@report');
+Route::get('user', 'admin@user');
+Route::get('resultUser/{id?}', 'admin@resultUser');
 
 Route::get('profile', 'user@profile');
 

@@ -127,13 +127,13 @@
     </div>
   </li>
   <li class="nav-item">
-    <a class="nav-link collapsed" href="report" >
+    <a class="nav-link collapsed" href="../user" >
       <i class="fas fa-fw fa-cog"></i>
       <span>สมาชิกผู้ใช้งาน</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link collapsed" href="report" >
+    <a class="nav-link collapsed" href="../report" >
       <i class="fas fa-fw fa-cog"></i>
       <span>รายงาน</span>
     </a>
