@@ -27,7 +27,7 @@
                                             @foreach ($users as $user)
                                                 <tr>
                                                     <td>{{$i}}</td>
-                                                    <td>{{$user->prefixName}}{{$user->firstName}}  {{$user->lastName}}</td>
+                                                    <td><a href="../informationUser?id={{$user->id}}">{{$user->prefixName}}{{$user->firstName}}  {{$user->lastName}}</a></td>
                                                     <td>{{$user->schools->school}}</td>
                                                     <td>{{$user->positions->positionName}}</td>
                                                     <td>

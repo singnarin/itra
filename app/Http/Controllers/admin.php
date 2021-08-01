@@ -18,7 +18,9 @@ class admin extends Controller
           return View('site.login');
         }else{
           $questions = Questions::all();
-          $users = Users::where('position_id', '!=', 3 )->get();
+          $users = Users::where('position_id', '=', 1 )
+          ->where('status', '=', 'OK' )
+          ->get();
             return View('admin.report')
             ->with('questions', $questions)
             ->with('users', $users);
@@ -48,6 +50,17 @@ class admin extends Controller
             ->with('questions', $questions)
             ->with('sections', $sections)
             ->with('userdatas', $userdatas);
+        }
+      }
+
+      public function informationUser(Request $request){
+        $user = Session::get('user');
+        if(empty($user)){
+          return View('site.login');
+        }else{
+            $users=Users::find($request->get('id'));
+            return View('admin.informationUser')
+            ->with('users', $users);
         }
       }
 }

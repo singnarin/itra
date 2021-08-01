@@ -37,7 +37,7 @@
 												<input type="text" class="form-control" name="answer1" placeholder="คำตอบ" value="{{substr($questions->answer1,0,-2) ?? ''}}">
 											</div>
                                             <div class="col-sm-2 mb-2 mb-sm-0">
-												<input type="text" class="form-control" name="score1" placeholder="คะแนน" value="{{substr($questions->answer1,-1) ?? ''}}">
+												<input type="number" class="form-control" name="score1" placeholder="คะแนน" value="{{substr($questions->answer1,-1) ?? ''}}">
 											</div>
 										</div>
                                         <div class="form-group row">
@@ -45,7 +45,7 @@
 												<input type="text" class="form-control" name="answer2" placeholder="คำตอบ" value="{{substr($questions->answer2,0,-2) ?? ''}}">
 											</div>
                                             <div class="col-sm-2 mb-2 mb-sm-0">
-												<input type="text" class="form-control" name="score2" placeholder="คะแนน" value="{{substr($questions->answer2,-1) ?? ''}}">
+												<input type="number" class="form-control" name="score2" placeholder="คะแนน" value="{{substr($questions->answer2,-1) ?? ''}}">
 											</div>
 										</div>
                                         <div class="form-group row">
@@ -53,7 +53,7 @@
 												<input type="text" class="form-control" name="answer3" placeholder="คำตอบ" value="{{substr($questions->answer3,0,-2) ?? ''}}">
 											</div>
                                             <div class="col-sm-2 mb-2 mb-sm-0">
-												<input type="text" class="form-control" name="score3" placeholder="คะแนน" value="{{substr($questions->answer3,-1) ?? ''}}">
+												<input type="number" class="form-control" name="score3" placeholder="คะแนน" value="{{substr($questions->answer3,-1) ?? ''}}">
 											</div>
 										</div>
                                         <div class="form-group row">
@@ -61,7 +61,7 @@
 												<input type="text" class="form-control" name="answer4" placeholder="คำตอบ" value="{{substr($questions->answer4,0,-2) ?? ''}}">
 											</div>
                                             <div class="col-sm-2 mb-2 mb-sm-0">
-												<input type="text" class="form-control" name="score4" placeholder="คะแนน" value="{{substr($questions->answer4,-1) ?? ''}}">
+												<input type="number" class="form-control" name="score4" placeholder="คะแนน" value="{{substr($questions->answer4,-1) ?? ''}}">
 											</div>
 										</div>
 										<button id="button" type="submit" class="btn btn-primary btn-user btn-block">บันทึก</button>

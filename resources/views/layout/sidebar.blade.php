@@ -24,7 +24,6 @@
   <div class="sidebar-heading">
     MENU
   </div>
-
   <!-- Nav Item - Pages Collapse Menu 
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -88,11 +87,11 @@
 <!-- //*********Admin Back End***************** -->
 @if($user[0]->position_id==3)
   <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseGeneral" aria-expanded="false" aria-controls="collapseGeneral">
       <i class="fas fa-fw fa-cog"></i>
       <span>แบบประเมินความเสี่ยงสำหรับผู้ใช้งานทั่วไป</span>
     </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div id="collapseGeneral" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <a class="collapse-item" href="../confidential">Confidential</a>
         <a class="collapse-item" href="../integrity">Integrity</a>
@@ -102,11 +101,11 @@
     </div>
   </li>
   <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdmin" aria-expanded="false" aria-controls="collapseAdmin">
       <i class="fas fa-fw fa-cog"></i>
       <span>แบบประเมินความเสี่ยงสำหรับผู้ดูแลระบบสารสนเทศ</span>
     </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div id="collapseAdmin" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <a class="collapse-item" href="../one?section_id=1">1.นโยบายความมั่นคง...</a>
         <a class="collapse-item" href="../one?section_id=2">2.โครงสร้างความมั่นคง...</a>
@@ -129,14 +128,20 @@
   <li class="nav-item">
     <a class="nav-link collapsed" href="../user" >
       <i class="fas fa-fw fa-cog"></i>
-      <span>สมาชิกผู้ใช้งาน</span>
+      <span>จัดการผู้ใช้งาน</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link collapsed" href="../report" >
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport" aria-expanded="false" aria-controls="collapseReport">
       <i class="fas fa-fw fa-cog"></i>
       <span>รายงาน</span>
     </a>
+    <div id="collapseReport" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" href="../report">ผู้ใช้งานทั่วไป</a>
+        <a class="collapse-item" href="../reportadmin">ผู้ดูแลระบบ</a>
+      </div>
+    </div>
   </li>
 @endif
 

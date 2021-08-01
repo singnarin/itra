@@ -33,6 +33,7 @@ Route::any('resultadminquestion/{id?}', 'questionadmin@resultquestion');
 Route::get('report', 'admin@report');
 Route::get('user', 'admin@user');
 Route::get('resultUser/{id?}', 'admin@resultUser');
+Route::get('informationUser', 'admin@informationUser');
 
 Route::get('profile', 'user@profile');
 
