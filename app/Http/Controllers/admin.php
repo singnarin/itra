@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Session;
 use App\Users;
 use App\Questions;
+use App\Questionadmins;
 use App\Answers;
 use App\Sections;
 use App\Http\Requests;
@@ -50,6 +51,21 @@ class admin extends Controller
             ->with('questions', $questions)
             ->with('sections', $sections)
             ->with('userdatas', $userdatas);
+        }
+      }
+
+      public function reportadmin(){
+        $user = Session::get('user');
+        if(empty($user)){
+          return View('site.login');
+        }else{
+          $questions = Questionadmins::all();
+          $users = Users::where('position_id', '=', 2 )
+          ->where('status', '=', 'OK' )
+          ->get();
+            return View('admin.reportadmin')
+            ->with('questions', $questions)
+            ->with('users', $users);
         }
       }
 
