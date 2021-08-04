@@ -10,10 +10,7 @@
   
   <!-- Topbar Search -->
     <div class="input-group">
-      <img src="../images/logo.png"  width="50">
-      <h1 class="h2 text-gray-900 mb-12">ระบบประเมินความเสี่ยงการใช้งานเทคโนโลยีสารสนเทศในองค์กรเบื้องต้น</h1>
-      <h4 class="h5 text-gray-900 mb-12">อ้างอิงตามองค์ประกอบพื้นฐานความปลอดภัย CIA และมาตรฐานความปลอดภัย ISO 27001:2015</h4>
-     
+      <img src="../images/header.png" width="100%">
     </div>
 
   <!-- Topbar Navbar -->
