@@ -43,7 +43,7 @@
                                             var myChart = new Chart(ctx, {
                                                 type: 'line',
                                                 data: {
-                                                    labels: {{$sections}},
+                                                    labels: {{$st->id}},
                                                     datasets: [{
                                                         label: 'ค่าการประเมินในด้านที่',
                                                         data: {{json_encode(array_values($x))}},

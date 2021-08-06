@@ -57,6 +57,180 @@
                                      <hr>
                                     </div>
 									<hr>
+
+                                    @if($users->status=='OK' && $users->position_id==1)
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <?php
+                                            $score = unserialize(base64_decode($users->answer));
+                                        ?>
+                                        @foreach ($sections as $section)
+                                                <?php
+                                                    $sum_score = 0 ;
+                                                    $num_row = 0 ;
+                                                ?>
+                                                @foreach ($questions as $question)
+                                                    
+                                                    @if ($question->section_id==$section->id)
+                                                        <?php
+                                                            $num_row = $num_row + 1 ;
+                                                            $sum_score = $sum_score + is_numeric($score[$question->id]); 
+                                                        ?>
+                                                    @endif
+
+                                                @endforeach
+                                                <thead>
+                                                    <tr>
+                                                        <th>ด้านที่ {{ $section->section }}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{$sum_score}}
+                                                                @if($section->id==1)
+                                                                    @if($sum_score<9)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @elseif($sum_score<17)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @elseif($sum_score28)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score<33)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @endif
+                                                                     <!--<a href="../resultquestion/{{$section->id}}">ดูรายละเอียด</a> -->
+                                                                @endif
+                                                                @if($section->id==2)
+                                                                    @if($sum_score<7)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @elseif($sum_score<13)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @elseif($sum_score<19)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score<25)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @endif
+                                                                    <!--<a href="../resultquestion/{{$section->id}}">ดูรายละเอียด</a> -->
+                                                                @endif
+                                                                @if($section->id==3)
+                                                                    @if($sum_score<17)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @elseif($sum_score<33)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @elseif($sum_score<49)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score<65)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @endif
+                                                                    <!--<a href="../resultquestion/{{$section->id}}">ดูรายละเอียด</a> -->
+                                                                @endif
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                        @endforeach 
+                                        <tr>
+                                            <th>สรุปผลการประเมินภาพรวม</th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <?php $sum_scr = 0 ; 
+                                                foreach ($score as $scr){
+                                                    $sum_scr = $sum_scr + is_numeric($scr);
+                                                }
+                                                ?>
+                                                
+                                                    @if($sum_scr<31)
+                                                    <div class="alert alert-success">
+                                                        ความเสี่ยงต่ำ
+                                                    </div>
+                                                    @elseif($sum_scr<61)
+                                                    <div class="alert alert-info">
+                                                        ความเสี่ยงปานกลาง
+                                                    </div>
+                                                    @elseif($sum_scr<94)
+                                                    <div class="alert alert-warning">
+                                                        ความเสี่ยงสูง
+                                                    </div>
+                                                    @elseif($sum_scr<121)
+                                                    <div class="alert alert-danger">
+                                                        ความเสี่ยงสูงมาก
+                                                    </div>
+                                                    @endif
+                                                    <!--<a href="../resultchart">ดูรายละเอียด</a>   -->
+
+                                            </td>
+                                        </tr>
+                                        </table>
+                                        <hr>
+                                        </form>
+                                    </div>
+                                    @endif
+
+                                    <?php 
+                                    $score = unserialize(base64_decode($users->answer));
+
+                                    foreach($sections as $st){
+                                                $sum_score = 0 ;
+                                                $num_row = 0 ;
+                                            foreach($questions as $question){
+                                                
+                                                if ($question->section_id==$st->id){
+                                                        $num_row = $num_row + 1 ;
+                                                        $sum_score = $sum_score + is_numeric($score[$question->id]); 
+                                                }
+
+                                            }
+                                        $x[$st->id] = $sum_score;
+                                    }
+                                    ?>
+
+                                    <div class="table-responsive">
+                                        <canvas id="myChart" width="400" height="400"></canvas>
+                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.js"></script>
+                                        <script>
+                                            var ctx = document.getElementById("myChart");
+                                            var myChart = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                    labels: {{$sections_arr}},
+                                                    datasets: [{
+                                                        label: 'ค่าการประเมินในด้านที่',
+                                                        data: {{json_encode(array_values($x))}},
+                                                        fill: false,
+                                                        borderColor: 'rgb(75, 192, 192)',
+                                                        tension: 0.1
+                                                    }]
+                                                }
+                                            });
+                                            </script>	
+                                    <hr>
+                                </div>
+
+
 								</div>
 							</div>
 						</div>

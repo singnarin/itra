@@ -75,8 +75,15 @@ class admin extends Controller
           return View('site.login');
         }else{
             $users=Users::find($request->get('id'));
+            $sections = Sections::all();
+            $questions = Questions::all();
+            $sections_arr = Sections::all()->toArray();
+            $sections_arr = array_column($sections_arr, 'id');
             return View('admin.informationUser')
-            ->with('users', $users);
+            ->with('sections_arr', json_encode($sections_arr,JSON_NUMERIC_CHECK))
+            ->with('users', $users)
+            ->with('questions', $questions)
+            ->with('sections', $sections);
         }
       }
 }
