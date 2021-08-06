@@ -6,7 +6,7 @@
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index_2">
     <div class="sidebar-brand-icon">
       <br><br>
-      <img src="../images/MPlogo.png" width="100">
+      <img src="../images/logo.png" width="100">
       <!--<i class="fas fa-laugh-wink"></i>-->
     </div>
     <br>
