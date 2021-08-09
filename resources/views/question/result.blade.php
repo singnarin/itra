@@ -16,6 +16,7 @@
 										@include('layout.flash-message')
 										
 									</div>
+                                    
                                     @if ($userdatas->status=='OK')
                                     <div class="table-responsive">
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -32,11 +33,12 @@
                                                     @if ($question->section_id==$section->id)
                                                         <?php
                                                             $num_row = $num_row + 1 ;
-                                                            $sum_score = $sum_score + is_numeric($score[$question->id]); 
+                                                            $sum_score = $sum_score + $score[$question->id]; 
                                                         ?>
                                                     @endif
 
                                                 @endforeach
+
                                                 <thead>
                                                     <tr>
                                                         <th>ด้านที่ {{ $section->section }}</th>
@@ -66,6 +68,26 @@
                                                                      <a href="../resultquestion/{{$section->id}}">ดูรายละเอียด</a> 
                                                                 @endif
                                                                 @if($section->id==2)
+                                                                    @if($sum_score<7)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @elseif($sum_score<13)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @elseif($sum_score<17)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score<25)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @endif
+                                                                    <a href="../resultquestion/{{$section->id}}">ดูรายละเอียด</a> 
+                                                                @endif
+                                                                @if($section->id==3)
                                                                     @if($sum_score<7)
                                                                     <div class="alert alert-success">
                                                                         ความเสี่ยงต่ำ

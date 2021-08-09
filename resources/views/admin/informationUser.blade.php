@@ -74,7 +74,7 @@
                                                     @if ($question->section_id==$section->id)
                                                         <?php
                                                             $num_row = $num_row + 1 ;
-                                                            $sum_score = $sum_score + is_numeric($score[$question->id]); 
+                                                            $sum_score = $sum_score + $score[$question->id]; 
                                                         ?>
                                                     @endif
 
@@ -96,7 +96,7 @@
                                                                     <div class="alert alert-info">
                                                                         ความเสี่ยงปานกลาง
                                                                     </div>
-                                                                    @elseif($sum_score28)
+                                                                    @elseif($sum_score<28)
                                                                     <div class="alert alert-warning">
                                                                         ความเสี่ยงสูง
                                                                     </div>
@@ -159,7 +159,7 @@
                                             <td>
                                                 <?php $sum_scr = 0 ; 
                                                 foreach ($score as $scr){
-                                                    $sum_scr = $sum_scr + is_numeric($scr);
+                                                    $sum_scr = $sum_scr + $scr;
                                                 }
                                                 ?>
                                                 
@@ -188,7 +188,7 @@
                                         <hr>
                                         </form>
                                     </div>
-                                    @endif
+                                   
 
                                     <?php 
                                     $score = unserialize(base64_decode($users->answer));
@@ -200,7 +200,7 @@
                                                 
                                                 if ($question->section_id==$st->id){
                                                         $num_row = $num_row + 1 ;
-                                                        $sum_score = $sum_score + is_numeric($score[$question->id]); 
+                                                        $sum_score = $sum_score + $score[$question->id]; 
                                                 }
 
                                             }
@@ -229,7 +229,7 @@
                                             </script>	
                                     <hr>
                                 </div>
-
+                                @endif
 
 								</div>
 							</div>

@@ -23,7 +23,7 @@
                                                     
                                                     if ($question->section_id==$st->id){
                                                             $num_row = $num_row + 1 ;
-                                                            $sum_score = $sum_score + is_numeric($score[$question->id]); 
+                                                            $sum_score = $sum_score + $score[$question->id]; 
                                                     }
 
                                                 }
@@ -43,7 +43,7 @@
                                             var myChart = new Chart(ctx, {
                                                 type: 'line',
                                                 data: {
-                                                    labels: {{$st->id}},
+                                                    labels: {{$sections}},
                                                     datasets: [{
                                                         label: 'ค่าการประเมินในด้านที่',
                                                         data: {{json_encode(array_values($x))}},
