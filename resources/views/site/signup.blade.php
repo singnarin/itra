@@ -10,7 +10,7 @@
 							<div class="col-lg-12">
 								<div class="p-5">
 									<div class="text-center">
-										<h1 class="h4 text-gray-900 mb-4">ลงทะเบียน</h1>
+										<h1 class="h4 text-gray-900 mb-4">ลงทะเบียนการเข้าใช้งานระบบ</h1>
 
 										@include('layout.flash-message')
 										
@@ -19,44 +19,53 @@
 										<input type="hidden" name="_token" value="{{ csrf_token() }}">
 										<div class="form-group row">
 											<div class="col-sm-2 mb-2 mb-sm-0">
-												<input type="text" class="form-control form-control-user" id="prefixName" name="prefixName"
+												<input type="text" class="form-control " id="prefixName" name="prefixName"
 													placeholder="คำนำหน้าชื่อ">
 											</div>
-											<div class="col-sm-5 mb-3 mb-sm-0">
-												<input type="text" class="form-control form-control-user" id="firstName" name="firstName"
+											<div class="col-sm-4 mb-4 mb-sm-0">
+												<input type="text" class="form-control " id="firstName" name="firstName"
 													placeholder="ชื่อ">
 											</div>
-											<div class="col-sm-5">
-												<input type="text" class="form-control form-control-user" id="lastName" name="lastName"
+											<div class="col-sm-4">
+												<input type="text" class="form-control " id="lastName" name="lastName"
 													placeholder="นามสกุล">
+											</div>
+											<div class="col-sm-2">
+												<input type="text" class="form-control " id="age" name="age" placeholder="อายุ">
 											</div>
 										</div>
 										<div class="form-group row">
-											<div class="col-sm-4 mb-3 mb-sm-0">
-												{!! Form::select('school_id',[null=>':: สถานศึกษา ::'] + \App\Schools::pluck('school','id')->toArray(), null, array('class'=>'form-control')) !!} 
+											<div class="col-sm-2 mb-2 mb-sm-0">
+												{!! Form::select('province_id',[null=>':: เพศ ::'] + \App\Provinces::pluck('name_th','id')->toArray(), null, array('class'=>'form-control')) !!} 
 											</div>
-											<div class="col-sm-3 mb-3 mb-sm-0">
-												{!! Form::select('province_id',[null=>':: จังหวัด ::'] + \App\Provinces::pluck('name_th','id')->toArray(), null, array('class'=>'form-control')) !!} 
+											<div class="col-sm-2 mb-2 mb-sm-0">
+												{!! Form::select('province_id',[null=>':: วุฒิการศึกษา ::'] + \App\Provinces::pluck('name_th','id')->toArray(), null, array('class'=>'form-control')) !!} 
 											</div>
-											<div class="col-sm-5">
-												{!! Form::select('position_id',[null=>':: ตำแหน่ง ::'] + \App\Positions::pluck('positionName','id')->toArray(), null, array('class'=>'form-control')) !!} 
+											<div class="col-sm-4 mb-4 mb-sm-0">
+												{!! Form::select('school_id',[null=>':: สังกัด/ที่ทำงาน ::'] + \App\Schools::pluck('school','id')->toArray(), null, array('class'=>'form-control')) !!} 
+											</div>
+											<div class="col-sm-4">
+												<input type="text" class="form-control " id="positionName" name="positionName" placeholder="ตำแหน่งปัจจุบัน">
+												<!--
+												{!! Form::select('position_id',[null=>':: ตำแหน่งปัจจุบัน ::'] + \App\Positions::pluck('positionName','id')->toArray(), null, array('class'=>'form-control')) !!} 
+												-->
 											</div>
 										</div>
 										<div class="form-group">
-											<input type="email" class="form-control form-control-user" id="email" name="email"
+											<input type="email" class="form-control " id="email" name="email"
 												placeholder="Email Address">
 										</div>
 										<div class="form-group row">
 											<div class="col-sm-6 mb-3 mb-sm-0">
-												<input type="password" class="form-control form-control-user"
+												<input type="password" class="form-control "
 													name="password" id="password" placeholder="Password">
 											</div>
 											<div class="col-sm-6">
-												<input type="password" class="form-control form-control-user"
+												<input type="password" class="form-control "
 													id="repeatPassword" name="repeatPassword" placeholder="Repeat Password">
 											</div>
 										</div>
-										<button id="button" type="submit" class="btn btn-primary btn-user btn-block">ลงทะเบียน</button>
+										<button id="button" type="submit" class="btn btn-primary btn-user btn-block">เข้าใช้งาน</button>
 										<hr>
 										<!--
 										<a href="index.html" class="btn btn-google btn-user btn-block">
