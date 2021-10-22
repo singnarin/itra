@@ -15,7 +15,7 @@
 										@include('layout.flash-message')
 										
 									</div>
-									<form class="user" action="regis" method="post" id="myForm" enctype="multipart/form-data">
+									<form class="user" action="regis" method="post" id="myForm" enctype="multipart/form-data" OnSubmit="return validateForm();">
 										<input type="hidden" name="_token" value="{{ csrf_token() }}">
 										<div class="form-group row">
 											<div class="col-sm-2 mb-2 mb-sm-0">
@@ -31,41 +31,58 @@
 													placeholder="นามสกุล">
 											</div>
 											<div class="col-sm-2">
-												<input type="text" class="form-control " id="age" name="age" placeholder="อายุ">
+												<input type="number" class="form-control " id="age" name="age" placeholder="อายุ">
 											</div>
 										</div>
 										<div class="form-group row">
 											<div class="col-sm-2 mb-2 mb-sm-0">
-												{!! Form::select('province_id',[null=>':: เพศ ::'] + \App\Provinces::pluck('name_th','id')->toArray(), null, array('class'=>'form-control')) !!} 
+												<select id="sex" name="sex" class="form-control ">
+													<option value="">:: เพศ ::</option>
+													<option value="ชาย">ชาย</option>
+													<option value="หญิง">หญิง</option>
+												</select>
 											</div>
 											<div class="col-sm-2 mb-2 mb-sm-0">
-												{!! Form::select('province_id',[null=>':: วุฒิการศึกษา ::'] + \App\Provinces::pluck('name_th','id')->toArray(), null, array('class'=>'form-control')) !!} 
+												<select id="education" name="education" class="form-control ">
+													<option value="">:: วุฒิการศึกษาสูงสุด ::</option>
+													<option value="ต่ำกว่าปริญญาตรี">ต่ำกว่าปริญญาตรี</option>
+													<option value="ระดับปริญญาตรี">ระดับปริญญาตรี</option>
+													<option value="ระดับปริญญาโท">ระดับปริญญาโท</option>
+													<option value="ระดับปริญญาเอก">ระดับปริญญาเอก</option>
+												</select>
 											</div>
 											<div class="col-sm-4 mb-4 mb-sm-0">
 												{!! Form::select('school_id',[null=>':: สังกัด/ที่ทำงาน ::'] + \App\Schools::pluck('school','id')->toArray(), null, array('class'=>'form-control')) !!} 
 											</div>
 											<div class="col-sm-4">
-												<input type="text" class="form-control " id="positionName" name="positionName" placeholder="ตำแหน่งปัจจุบัน">
+												<select id="position" name="position" class="form-control ">
+													<option value="">:: ตำแหน่งงานปัจจุบันของคุณคือ ::</option>
+													<option value="เจ้าหน้าที่ดูแลเกี่ยวกับระบบสารสนเทศองค์กร">เจ้าหน้าที่ดูแลเกี่ยวกับระบบสารสนเทศองค์กร</option>
+													<option value="เจ้าหน้าที่ปฏิบัติงานทั่วไปในองค์กร/หรือสำนักงาน">เจ้าหน้าที่ปฏิบัติงานทั่วไปในองค์กร/หรือสำนักงาน</option>
+													<option value="ครู-อาจารย์">ครู-อาจารย์</option>
+													<option value="อื่นๆ">อื่นๆ</option>
+												</select>
 												<!--
 												{!! Form::select('position_id',[null=>':: ตำแหน่งปัจจุบัน ::'] + \App\Positions::pluck('positionName','id')->toArray(), null, array('class'=>'form-control')) !!} 
 												-->
 											</div>
 										</div>
-										<div class="form-group">
-											<input type="email" class="form-control " id="email" name="email"
-												placeholder="Email Address">
-										</div>
 										<div class="form-group row">
 											<div class="col-sm-6 mb-3 mb-sm-0">
-												<input type="password" class="form-control "
-													name="password" id="password" placeholder="Password">
+												<input type="email" class="form-control " id="email" name="email" placeholder="Email Address">
 											</div>
-											<div class="col-sm-6">
-												<input type="password" class="form-control "
-													id="repeatPassword" name="repeatPassword" placeholder="Repeat Password">
+											<div class="col-sm-6 mb-3 mb-sm-0">
+												<input type="password" class="form-control " id="password" name="password" placeholder="กำหนดรหัสผ่าน">
 											</div>
 										</div>
-										<button id="button" type="submit" class="btn btn-primary btn-user btn-block">เข้าใช้งาน</button>
+										<div class="form-group row">
+											<div class="col-sm-5 mb-5 mb-sm-0"></div>
+											<div class="col-sm-2 mb-2 mb-sm-0">
+												<button id="button" type="submit" class="btn btn-primary btn-block">เข้าใช้งาน</button>
+											</div>
+											<div class="col-sm-5 mb-5 mb-sm-0"></div>
+										</div>
+										
 										<hr>
 										<!--
 										<a href="index.html" class="btn btn-google btn-user btn-block">
@@ -76,7 +93,6 @@
 										</a>
 									-->
 									</form>
-									<hr>
 									<div class="text-center">
 										<a class="small" href="loginForm">เข้าสู่ระบบ</a>
 									</div>
@@ -90,34 +106,4 @@
 
 <script type='text/javascript' src='https://code.jquery.com/jquery-1.12.4.min.js' crossorigin="anonymous"></script>
 <script language="javascript">
-	$(document).ready(function(){
-		$('#userId').on('keyup',function(){
-		  if($.trim($(this).val()) != '' && $(this).val().length < 14){
-			id = $(this).val().replace(/-/g,"");
-			var result = Script_checkID(id);
-			const btn = document.getElementById("button");
-			if(result === false){
-				btn.disabled = true;
-			}else{
-				btn.disabled = false;
-			}
-		  }else{
-			$('span.error').removeClass('true').text('');
-		  }
-		})
-	  });
-	  
-	  function Script_checkID(id){
-		  if(! IsNumeric(id)) return false;
-		  if(id.substring(0,1)== 0) return false;
-		  if(id.length != 13) return false;
-		  for(i=0, sum=0; i < 12; i++)
-			  sum += parseFloat(id.charAt(i))*(13-i);
-		  if((11-sum%11)%10!=parseFloat(id.charAt(12))) return false;
-		  return true;
-	  }
-	  function IsNumeric(input){
-		  var RE = /^-?(0|INF|(0[1-7][0-7]*)|(0x[0-9a-fA-F]+)|((0|[1-9][0-9]*|(?=[\.,]))([\.,][0-9]+)?([eE]-?\d+)?))$/;
-		  return (RE.test(input));
-	  }
 </script>

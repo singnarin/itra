@@ -59,15 +59,19 @@ class index extends Controller
           $users->prefixName = $request->get('prefixName');
           $users->firstName = $request->get('firstName');
           $users->lastName = $request->get('lastName');
+          $users->age = $request->get('age');
+          $users->sex = $request->get('sex');
+          $users->education = $request->get('education');
           $users->school_id = $request->get('school_id');
-          $users->province_id = $request->get('province_id');
-          $users->position_id = $request->get('position_id');
-          //$users->email = $request->get('email');
+          $users->position = $request->get('position');
+          $users->password = $request->get('password');
+          /*
           if($request->get('password')==$request->get('repeatPassword')){
             $users->password = $request->get('password');
           }else{
             return back()->with('error','password ไม่ตรงกัน');
           }
+          */
           
         }
         

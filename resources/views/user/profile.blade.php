@@ -36,7 +36,7 @@
                                                     <td>สังกัดสถานศึกษา : {{$user[0]->schools->school}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>จังหวัด : {{$user[0]->provinces->name_th}}</td>
+                                                    <td>จังหวัด : {{$user[0]->provinces->name_th ?? ''}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>ตำแหน่ง : {{$user[0]->positions->positionName ?? ''}}</td>

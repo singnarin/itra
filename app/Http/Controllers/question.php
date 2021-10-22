@@ -12,11 +12,20 @@ use App\Http\Requests;
 
 class question extends Controller
 {
-    public function question(){
+    public function question(Request $request){
         $user = Session::get('user');
         if(empty($user)){
           return View('site.login');
         }else{
+          if(!empty($request->get('email'))){
+            $users=Users::find($request->get('email'));
+            $users->position_id = $request->get('position_id');
+            $users->save();
+            Session::forget('user');
+            $user = Users::where('id', '=', $request->get('email'))->get();
+            Session::put('user', $user);
+            $user = Session::get('user');
+          }
             $questions = Questions::all();
             $sections = Sections::all();
             $userdatas=Users::find(Session::get('user')[0]->id);

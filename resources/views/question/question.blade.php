@@ -9,7 +9,7 @@
 							<div class="col-lg-12">
 								<div class="p-5">
 									<div class="text-center">
-										<h1 class="h4 text-gray-900 mb-4">การประเมินผู้ใช้งานทั่วไป</h1>
+										<h1 class="h4 text-gray-900 mb-4">การประเมินผู้ใช้งานทั่วไป{{$user[0]->id}} {{$user[0]->position_id}}</h1>
 										@include('layout.flash-message')
 									</div>
                                     
