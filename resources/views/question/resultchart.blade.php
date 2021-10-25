@@ -29,77 +29,82 @@
                                                 }
                                                 
                                             if($st->id==1){
-                                                if($sum_score>27){
+                                                if($sum_score>7){
                                                     $x[$st->id]='ความเสี่ยงสูงมาก';
-                                                }else if($sum_score>16){
+                                                }else if($sum_score>5){
                                                     $x[$st->id]='ความเสี่ยงสูง';
-                                                }else if($sum_score>8){
+                                                }else if($sum_score>3){
                                                     $x[$st->id]='ความเสี่ยงปานกลาง';
                                                 }else{
                                                     $x[$st->id]='ความเสี่ยงต่ำ';
                                                 }
                                             }
                                             if($st->id==2){
-                                                if($sum_score>18){
+                                                if($sum_score>17){
                                                     $x[$st->id]='ความเสี่ยงสูงมาก';
-                                                }else if($sum_score>12){
+                                                }else if($sum_score>13){
                                                     $x[$st->id]='ความเสี่ยงสูง';
-                                                }else if($sum_score>6){
+                                                }else if($sum_score>7){
                                                     $x[$st->id]='ความเสี่ยงปานกลาง';
                                                 }else{
                                                     $x[$st->id]='ความเสี่ยงต่ำ';
                                                 }
                                             }
                                             if($st->id==3){
-                                                if($sum_score>48){
+                                                if($sum_score>17){
                                                     $x[$st->id]='ความเสี่ยงสูงมาก';
-                                                }else if($sum_score>32){
+                                                }else if($sum_score>13){
                                                     $x[$st->id]='ความเสี่ยงสูง';
-                                                }else if($sum_score>16){
+                                                }else if($sum_score>7){
                                                     $x[$st->id]='ความเสี่ยงปานกลาง';
                                                 }else{
                                                     $x[$st->id]='ความเสี่ยงต่ำ';
                                                 }
                                             }
                                             
-                                            $x[$st->id] = $sum_score;
+                                            //$x[$st->id] = $sum_score;
                                         }
                                         ?>
+                                        
 										@include('layout.flash-message')
-                                        {{json_encode(array_values($x))}}
 									</div>
                                     @if ($userdatas->status=='OK')
-                                    <div class="table-responsive">
-                                        <canvas id="myChart" width="400" height="400"></canvas>
-                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.js"></script>
-                                        <script>
-                                            var ctx = document.getElementById("myChart");
-                                            var myChart = new Chart(ctx, {
-                                                type: 'bar',
-                                                data: {
-                                                    labels: {{$sections}},
-                                                    datasets: [{
-                                                        label: 'ค่าการประเมินในด้านที่',
-                                                        data: {{json_encode(array_values($x))}},
-                                                        fill: false,
-                                                        backgroundColor: [
-                                                            'rgba(255, 99, 132, 0.2)',
-                                                            'rgba(54, 162, 235, 0.2)',
-                                                            'rgba(255, 206, 86, 0.2)'
-                                                        ],
-                                                        borderColor: [
-                                                            'rgba(255,99,132,1)',
-                                                            'rgba(54, 162, 235, 1)',
-                                                            'rgba(255, 206, 86, 1)'
-                                                        ],
-                                                        borderWidth: 1
-                                                    }]
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-6 mb-sm-0">
+                                            <div id="piechart" style="width: 500px; height: 300px;"></div>
+                                        </div>
+                                        <div class="col-sm-6 mb-6 mb-sm-0">
+                                            1.Comfidential: การปกป้องสารสนเทศให้เข้าถึงได้เฉพาะผู้ที่มีสิทธิ <a href="../resultquestion/1">คลิก</a><br>
+                                            2.Integrity: ปกป้องความถูกต้องสมบูรณ์ของสารสนเทศไม่ให้ถูกแก้ไข เปลี่ยนแปลงผิดไปจากความเป็นจริง <a href="../resultquestion/2">คลิก</a><br>
+                                            3.Availability: สร้างความเชื่อมั่นว่าระบบสารสนเทศพร้อมใช้งาน <a href="../resultquestion/3">คลิก</a><br><br><br><br><br>
+                                            <h1 class="h4 text-gray-900 mb-4">ระดับความเสี่ยงที่ได้อยู่ในระดับ</h1>
+                                            <?php $sum_scr = 0 ; 
+                                                foreach ($score as $scr){
+                                                    $sum_scr = $sum_scr + is_numeric($scr);
                                                 }
-                                            });
-                                            </script>	
+                                                ?>
+                                                
+                                                    @if($sum_scr<68)
+                                                    <div class="alert alert-success">
+                                                       {{$sum_scr}} : ความเสี่ยงต่ำ
+                                                    </div>
+                                                    @elseif($sum_scr<135)
+                                                    <div class="alert alert-info">
+                                                        {{$sum_scr}} : ความเสี่ยงปานกลาง
+                                                    </div>
+                                                    @elseif($sum_scr<202)
+                                                    <div class="alert alert-warning">
+                                                        {{$sum_scr}} : ความเสี่ยงสูง
+                                                    </div>
+                                                    @elseif($sum_scr<269)
+                                                    <div class="alert alert-danger">
+                                                        {{$sum_scr}} : ความเสี่ยงสูงมาก
+                                                    </div>
+                                                    @endif
+                                        </div>
+                                    </div>
                                     <hr>
                                 </form>
-                            </div>
                             @else
                                 <div class="alert alert-warning alert-block">
                                     <a href="../question"><button type="button" class="close" data-dismiss="alert"></button>
@@ -109,9 +114,6 @@
                                     </a>
                                 </div>
                             @endif
-                            <div id="piechart"></div>
-                                    
-
 								</div>
 							</div>
 						</div>
@@ -123,25 +125,34 @@
 
 <script type="text/javascript">
 // Load google charts
-google.charts.load('current', {'packages':['corechart']});
+google.charts.load('current', {'packages':['bar']});
 google.charts.setOnLoadCallback(drawChart);
 
 // Draw the chart and set the chart values
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
-  ['Task', 'Hours per Day'],
-  ['Work', 8],
-  ['Eat', 2],
-  ['TV', 4],
-  ['Gym', 2],
-  ['Sleep', 8]
+  ['ด้านที่', 'ด้านที่ 1','ด้านที่ 2','ด้านที่ 3',],
+  <?php
+    echo '["ระดับความเสี่ยง",';
+    foreach ($x as $item){
+        echo '"'.$item.'",';
+    }
+    echo ']' ;
+  ?>
 ]);
 
   // Optional; add a title and set the width and height of the chart
-  var options = {'title':'My Average Day', 'width':550, 'height':400};
+  var options = {
+    /*chart: {
+      title: 'Company Performance',
+      subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+    },*/
+    bars: 'vertical' // Required for Material Bar Charts.
+  };
 
   // Display the chart inside the <div> element with id="piechart"
-  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-  chart.draw(data, options);
+    var chart = new google.charts.Bar(document.getElementById('piechart'));
+
+    chart.draw(data, google.charts.Bar.convertOptions(options));
 }
 </script>
