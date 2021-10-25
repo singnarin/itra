@@ -82,19 +82,9 @@
 											</div>
 											<div class="col-sm-5 mb-5 mb-sm-0"></div>
 										</div>
-										
-										<hr>
-										<!--
-										<a href="index.html" class="btn btn-google btn-user btn-block">
-											<i class="fab fa-google fa-fw"></i> Register with Google
-										</a>
-										<a href="index.html" class="btn btn-facebook btn-user btn-block">
-											<i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-										</a>
-									-->
 									</form>
 									<div class="text-center">
-										<a class="small" href="loginForm">เข้าสู่ระบบ</a>
+										หากมีบัญชีแล้วกรุณา <a href="loginForm">เข้าสู่ระบบ</a>
 									</div>
 								</div>
 							</div>

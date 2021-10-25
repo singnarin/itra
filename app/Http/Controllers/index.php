@@ -104,7 +104,17 @@ class index extends Controller
             ->get();
             if(!empty($user[0])){
               Session::put('user', $user);
-              return Redirect('index_2');
+              if(empty($user[0]->position_id)){
+                return Redirect('index_2');
+              }else if($user[0]->position_id==1){
+                return Redirect('question');
+              }else if($user[0]->position_id==2){
+                return Redirect('questionadmin');
+              }else if($user[0]->position_id==3){
+                return Redirect('report');
+              }else{
+                return back()->with('error','ผิดพลาด');
+              }
             }else{
               return back()->with('error','email หรือ รหัสผ่านไม่ถูกต้อง');
             }

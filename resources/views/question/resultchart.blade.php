@@ -9,10 +9,10 @@
 							<div class="col-lg-12">
 								<div class="p-5">
 									<div class="text-center">
-										<h1 class="h4 text-gray-900 mb-4">ผลการทดสอบสำหรับผู้ดูใช้งานทั่วไป</h1>
-										<h1 class="h6 text-gray-900 mb-4">{{$users[0]->prefixName}}{{$users[0]->firstName}} {{$users[0]->lastName}}</h1>
-										<h1 class="h6 text-gray-900 mb-4">สังกัด {{$users[0]->Schools->school}}</h1>
-                                        
+										<h1 class="h4 text-gray-900 mb-4">รายงานผล</h1>
+										<h1 class="h4 text-gray-900 mb-4">การวัดระดับความเสี่ยงการใช้เทคโนโลยีสารสนเทศในองค์กร</h1>
+										<h1 class="h6 text-gray-900 mb-4">{{$users[0]->prefixName}}{{$users[0]->firstName}} {{$users[0]->lastName}} ประเภท {{$users[0]->Positions->positionName}}</h1>
+                                        <hr>                                        
                                         <?php 
                                         $score = unserialize(base64_decode($userdatas->answer));
 
@@ -27,12 +27,46 @@
                                                     }
 
                                                 }
+                                                
+                                            if($st->id==1){
+                                                if($sum_score>27){
+                                                    $x[$st->id]='ความเสี่ยงสูงมาก';
+                                                }else if($sum_score>16){
+                                                    $x[$st->id]='ความเสี่ยงสูง';
+                                                }else if($sum_score>8){
+                                                    $x[$st->id]='ความเสี่ยงปานกลาง';
+                                                }else{
+                                                    $x[$st->id]='ความเสี่ยงต่ำ';
+                                                }
+                                            }
+                                            if($st->id==2){
+                                                if($sum_score>18){
+                                                    $x[$st->id]='ความเสี่ยงสูงมาก';
+                                                }else if($sum_score>12){
+                                                    $x[$st->id]='ความเสี่ยงสูง';
+                                                }else if($sum_score>6){
+                                                    $x[$st->id]='ความเสี่ยงปานกลาง';
+                                                }else{
+                                                    $x[$st->id]='ความเสี่ยงต่ำ';
+                                                }
+                                            }
+                                            if($st->id==3){
+                                                if($sum_score>48){
+                                                    $x[$st->id]='ความเสี่ยงสูงมาก';
+                                                }else if($sum_score>32){
+                                                    $x[$st->id]='ความเสี่ยงสูง';
+                                                }else if($sum_score>16){
+                                                    $x[$st->id]='ความเสี่ยงปานกลาง';
+                                                }else{
+                                                    $x[$st->id]='ความเสี่ยงต่ำ';
+                                                }
+                                            }
+                                            
                                             $x[$st->id] = $sum_score;
                                         }
                                         ?>
-                                        
 										@include('layout.flash-message')
-										
+                                        {{json_encode(array_values($x))}}
 									</div>
                                     @if ($userdatas->status=='OK')
                                     <div class="table-responsive">
@@ -41,15 +75,24 @@
                                         <script>
                                             var ctx = document.getElementById("myChart");
                                             var myChart = new Chart(ctx, {
-                                                type: 'line',
+                                                type: 'bar',
                                                 data: {
                                                     labels: {{$sections}},
                                                     datasets: [{
                                                         label: 'ค่าการประเมินในด้านที่',
                                                         data: {{json_encode(array_values($x))}},
                                                         fill: false,
-                                                        borderColor: 'rgb(75, 192, 192)',
-                                                        tension: 0.1
+                                                        backgroundColor: [
+                                                            'rgba(255, 99, 132, 0.2)',
+                                                            'rgba(54, 162, 235, 0.2)',
+                                                            'rgba(255, 206, 86, 0.2)'
+                                                        ],
+                                                        borderColor: [
+                                                            'rgba(255,99,132,1)',
+                                                            'rgba(54, 162, 235, 1)',
+                                                            'rgba(255, 206, 86, 1)'
+                                                        ],
+                                                        borderWidth: 1
                                                     }]
                                                 }
                                             });
@@ -66,6 +109,7 @@
                                     </a>
                                 </div>
                             @endif
+                            <div id="piechart"></div>
                                     
 
 								</div>
@@ -75,3 +119,29 @@
 				</div>
 			</div>
 @endsection
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Task', 'Hours per Day'],
+  ['Work', 8],
+  ['Eat', 2],
+  ['TV', 4],
+  ['Gym', 2],
+  ['Sleep', 8]
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'My Average Day', 'width':550, 'height':400};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+</script>

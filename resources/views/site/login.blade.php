@@ -8,28 +8,43 @@
 							<div class="col-lg-12">
 								<div class="p-5">
 									<div class="text-center">
-										<h1 class="h4 text-gray-900 mb-4">เข้าสู่ระบบ</h1>
+										<img src="../images/logo.png" width="100">
+									</div>
+									<div class="text-center">
+										<h1 class="h5 text-gray-900 mb-4">ลงชื่อเข้าใช้งาน</h1>
+									</div>
+									<div class="text-center">
+										<h1 class="h6 text-gray-900 mb-4">ระบบประเมินความเสี่ยงการใช้งานระบบเทคโนโลยีสารสนเทศในองค์กร</h1>
 
 										@include('layout.flash-message')
 										
 									</div>
 									<form class="user" action="login" method="post" id="myForm" enctype="multipart/form-data">
 										<input type="hidden" name="_token" value="{{ csrf_token() }}">
-										
-										<div class="form-group">
-											<input type="email" class="form-control form-control-user" id="email" name="email"
-												placeholder="Email Address">
+										<div class="form-group row">
+											<div class="col-sm-4 mb-4 mb-sm-0"></div>
+											<div class="col-sm-4 mb-4 mb-sm-0">
+												<input type="email" class="form-control" id="email" name="email" placeholder="Email Address">
+											</div>
+											<div class="col-sm-4 mb-4 mb-sm-0"></div>
 										</div>
-										<div class="form-group">
-												<input type="password" class="form-control form-control-user"
-													name="password" id="password" placeholder="Password">
+										<div class="form-group row">
+											<div class="col-sm-4 mb-4 mb-sm-0"></div>
+											<div class="col-sm-4 mb-4 mb-sm-0">
+												<input type="password" class="form-control" name="password" id="password" placeholder="Password">
+											</div>
+											<div class="col-sm-4 mb-4 mb-sm-0"></div>
 										</div>
-										<button id="button" type="submit" class="btn btn-primary btn-user btn-block">เข้าสู่ระบบ</button>
-										<hr>
+										<div class="form-group row">
+											<div class="col-sm-4 mb-4 mb-sm-0"></div>
+											<div class="col-sm-4 mb-4 mb-sm-0">
+												<button id="button" type="submit" class="btn btn-primary btn-block">เข้าสู่ระบบ</button>
+											</div>
+											<div class="col-sm-4 mb-4 mb-sm-0"><a href="#">ลืมรหัสผ่าน?</a></div>
+										</div>
 									</form>
-									<hr>
 									<div class="text-center">
-										<a class="small" href="signup">ลงทะเบียน</a>||<a class="small" href="#">ลืมรหัสผ่าน?</a>
+										หากไม่มีบัญชีกรุณา <a href="signup">ลงทะเบียน</a></a>
 									</div>
 								</div>
 							</div>
