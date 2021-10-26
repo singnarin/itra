@@ -22,7 +22,7 @@
                                         
                                         @if ($userdatas->status=='OK')
                                             <div class="alert alert-warning alert-block">
-                                                <a href="../resultadmin"><button type="button" class="close" data-dismiss="alert"></button>
+                                                <a href="../resultadminchart"><button type="button" class="close" data-dismiss="alert"></button>
                                                     <div align='center'>
                                                         <strong>ได้ทำแบบทดสอบเรียบร้อยแล้ว ดูผลการประเมิน</strong>
                                                     </div>

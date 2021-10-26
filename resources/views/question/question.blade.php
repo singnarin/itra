@@ -23,7 +23,7 @@
 										<input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         @if (isset($userdatas) && $userdatas->status=='OK')
                                             <div class="alert alert-warning alert-block">
-                                                <a href="../result"><button type="button" class="close" data-dismiss="alert"></button>
+                                                <a href="../resultchart"><button type="button" class="close" data-dismiss="alert"></button>
                                                     <div align='center'>
                                                         <strong>ได้ทำแบบทดสอบเรียบร้อยแล้ว ดูผลการประเมิน</strong>
                                                     </div>

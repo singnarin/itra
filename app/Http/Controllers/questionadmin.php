@@ -18,7 +18,13 @@ class questionadmin extends Controller
           return View('site.login');
         }else{
           if(!empty($request->get('email'))){
-            return $request->get('email');
+            $users=Users::find($request->get('email'));
+            $users->position_id = $request->get('position_id');
+            $users->save();
+            Session::forget('user');
+            $user = Users::where('id', '=', $request->get('email'))->get();
+            Session::put('user', $user);
+            $user = Session::get('user');
           }
             $questions = Questionadmins::all();
             $sections = Sectionadmins::all();

@@ -9,9 +9,10 @@
 							<div class="col-lg-12">
 								<div class="p-5">
 									<div class="text-center">
-										<h1 class="h4 text-gray-900 mb-4">ผลการทดสอบสำหรับผู้ดูแลระบบสารสนเทศ</h1>
-										<h1 class="h6 text-gray-900 mb-4">{{$users[0]->prefixName}}{{$users[0]->firstName}} {{$users[0]->lastName}}</h1>
-										<h1 class="h6 text-gray-900 mb-4">สังกัด {{$users[0]->Schools->school}}</h1>
+										<h1 class="h4 text-gray-900 mb-4">รายงานผล</h1>
+										<h1 class="h4 text-gray-900 mb-4">การวัดระดับความเสี่ยงการใช้เทคโนโลยีสารสนเทศในองค์กร</h1>
+										<h1 class="h6 text-gray-900 mb-4">{{$users[0]->prefixName}}{{$users[0]->firstName}} {{$users[0]->lastName}} ประเภท {{$users[0]->Positions->positionName}}</h1>
+                                        <hr> 
 
 										@include('layout.flash-message')
 										
@@ -46,44 +47,297 @@
                                                     <tr>
                                                         <td>{{$sum_score}}
                                                                 @if($section->id==1)
-                                                                    @if($sum_score<3)
-                                                                    <div class="alert alert-success">
-                                                                        ความเสี่ยงต่ำ
+                                                                    @if($sum_score>6)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
                                                                     </div>
-                                                                    @elseif($sum_score<5)
-                                                                    <div class="alert alert-info">
-                                                                        ความเสี่ยงปานกลาง
-                                                                    </div>
-                                                                    @elseif($sum_score<7)
+                                                                    @elseif($sum_score>4)
                                                                     <div class="alert alert-warning">
                                                                         ความเสี่ยงสูง
                                                                     </div>
-                                                                    @elseif($sum_score<9)
-                                                                    <div class="alert alert-danger">
-                                                                        ความเสี่ยงสูงมาก
+                                                                    @elseif($sum_score>2)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @else($sum_score)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
                                                                     </div>
                                                                     @endif
                                                                      <a href="../resultadminquestion/{{$section->id}}">ดูรายละเอียด</a> 
                                                                 @endif
+                                                                
                                                                 @if($section->id==2)
-                                                                    @if($sum_score<7)
-                                                                    <div class="alert alert-success">
-                                                                        ความเสี่ยงต่ำ
-                                                                    </div>
-                                                                    @elseif($sum_score<13)
-                                                                    <div class="alert alert-info">
-                                                                        ความเสี่ยงปานกลาง
-                                                                    </div>
-                                                                    @elseif($sum_score<17)
-                                                                    <div class="alert alert-warning">
-                                                                        ความเสี่ยงสูง
-                                                                    </div>
-                                                                    @elseif($sum_score<25)
+                                                                    @if($sum_score>18)
                                                                     <div class="alert alert-danger">
                                                                         ความเสี่ยงสูงมาก
                                                                     </div>
+                                                                    @elseif($sum_score>12)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score>6)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @else($sum_score)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
                                                                     @endif
-                                                                    <a href="../resultadminquestion/{{$section->id}}">ดูรายละเอียด</a> 
+                                                                     <a href="../resultadminquestion/{{$section->id}}">ดูรายละเอียด</a> 
+                                                                @endif
+
+                                                                @if($section->id==3)
+                                                                    @if($sum_score>18)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @elseif($sum_score>12)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score>6)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @else($sum_score)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @endif
+                                                                     <a href="../resultadminquestion/{{$section->id}}">ดูรายละเอียด</a> 
+                                                                @endif
+
+                                                                @if($section->id==4)
+                                                                    @if($sum_score>21)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @elseif($sum_score>14)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score>7)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @else($sum_score)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @endif
+                                                                     <a href="../resultadminquestion/{{$section->id}}">ดูรายละเอียด</a> 
+                                                                @endif
+
+                                                                @if($section->id==5)
+                                                                    @if($sum_score>21)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @elseif($sum_score>14)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score>7)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @else($sum_score)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @endif
+                                                                     <a href="../resultadminquestion/{{$section->id}}">ดูรายละเอียด</a> 
+                                                                @endif
+
+                                                                @if($section->id==6)
+                                                                    @if($sum_score>3)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @elseif($sum_score>2)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score>1)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @else($sum_score)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @endif
+                                                                     <a href="../resultadminquestion/{{$section->id}}">ดูรายละเอียด</a> 
+                                                                @endif
+
+                                                                @if($section->id==7)
+                                                                    @if($sum_score>27)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @elseif($sum_score>18)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score>9)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @else($sum_score)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @endif
+                                                                     <a href="../resultadminquestion/{{$section->id}}">ดูรายละเอียด</a> 
+                                                                @endif
+
+                                                                @if($section->id==8)
+                                                                    @if($sum_score>21)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @elseif($sum_score>14)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score>7)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @else($sum_score)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @endif
+                                                                     <a href="../resultadminquestion/{{$section->id}}">ดูรายละเอียด</a> 
+                                                                @endif
+
+                                                                @if($section->id==9)
+                                                                    @if($sum_score>9)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @elseif($sum_score>6)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score>3)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @else($sum_score)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @endif
+                                                                     <a href="../resultadminquestion/{{$section->id}}">ดูรายละเอียด</a> 
+                                                                @endif
+
+                                                                @if($section->id==10)
+                                                                    @if($sum_score>15)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @elseif($sum_score>10)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score>5)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @else($sum_score)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @endif
+                                                                     <a href="../resultadminquestion/{{$section->id}}">ดูรายละเอียด</a> 
+                                                                @endif
+
+                                                                @if($section->id==11)
+                                                                    @if($sum_score>9)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @elseif($sum_score>6)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score>3)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @else($sum_score)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @endif
+                                                                     <a href="../resultadminquestion/{{$section->id}}">ดูรายละเอียด</a> 
+                                                                @endif
+
+                                                                @if($section->id==12)
+                                                                    @if($sum_score>12)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @elseif($sum_score>8)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score>4)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @else($sum_score)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @endif
+                                                                     <a href="../resultadminquestion/{{$section->id}}">ดูรายละเอียด</a> 
+                                                                @endif
+
+                                                                @if($section->id==13)
+                                                                    @if($sum_score>6)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @elseif($sum_score>4)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score>2)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @else($sum_score)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @endif
+                                                                     <a href="../resultadminquestion/{{$section->id}}">ดูรายละเอียด</a> 
+                                                                @endif
+
+                                                                @if($section->id==14)
+                                                                    @if($sum_score>15)
+                                                                    <div class="alert alert-danger">
+                                                                        ความเสี่ยงสูงมาก
+                                                                    </div>
+                                                                    @elseif($sum_score>10)
+                                                                    <div class="alert alert-warning">
+                                                                        ความเสี่ยงสูง
+                                                                    </div>
+                                                                    @elseif($sum_score>5)
+                                                                    <div class="alert alert-info">
+                                                                        ความเสี่ยงปานกลาง
+                                                                    </div>
+                                                                    @else($sum_score)
+                                                                    <div class="alert alert-success">
+                                                                        ความเสี่ยงต่ำ
+                                                                    </div>
+                                                                    @endif
+                                                                     <a href="../resultadminquestion/{{$section->id}}">ดูรายละเอียด</a> 
                                                                 @endif
                                                             
                                                         </td>
@@ -101,21 +355,21 @@
                                                 }
                                                 ?>
                                                 
-                                                    @if($sum_scr<68)
-                                                    <div class="alert alert-success">
-                                                        ความเสี่ยงต่ำ
+                                                    @if($sum_scr>201)
+                                                    <div class="alert alert-danger">
+                                                        ความเสี่ยงสูงมาก
                                                     </div>
-                                                    @elseif($sum_scr<135)
-                                                    <div class="alert alert-info">
-                                                        ความเสี่ยงปานกลาง
-                                                    </div>
-                                                    @elseif($sum_scr<202)
+                                                    @elseif($sum_scr>134)
                                                     <div class="alert alert-warning">
                                                         ความเสี่ยงสูง
                                                     </div>
-                                                    @elseif($sum_scr<269)
-                                                    <div class="alert alert-danger">
-                                                        ความเสี่ยงสูงมาก
+                                                    @elseif($sum_scr>67)
+                                                    <div class="alert alert-info">
+                                                        ความเสี่ยงปานกลาง
+                                                    </div>
+                                                    @else
+                                                    <div class="alert alert-success">
+                                                        ความเสี่ยงต่ำ
                                                     </div>
                                                     @endif
                                                     <a href="../resultadminchart">ดูรายละเอียด</a>   

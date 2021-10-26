@@ -74,9 +74,10 @@
                                             <div id="piechart" style="width: 500px; height: 300px;"></div>
                                         </div>
                                         <div class="col-sm-6 mb-6 mb-sm-0">
-                                            1.Comfidential: การปกป้องสารสนเทศให้เข้าถึงได้เฉพาะผู้ที่มีสิทธิ <a href="../resultquestion/1">คลิก</a><br>
-                                            2.Integrity: ปกป้องความถูกต้องสมบูรณ์ของสารสนเทศไม่ให้ถูกแก้ไข เปลี่ยนแปลงผิดไปจากความเป็นจริง <a href="../resultquestion/2">คลิก</a><br>
-                                            3.Availability: สร้างความเชื่อมั่นว่าระบบสารสนเทศพร้อมใช้งาน <a href="../resultquestion/3">คลิก</a><br><br><br><br><br>
+                                            @foreach ($section as $sectionname)
+                                            {{$sectionname->id}}. {{$sectionname->section}}<a href="../resultquestion/{{$sectionname->id}}">คลิก</a><br/>
+                                            @endforeach
+                                            <br><br><br><br><br>
                                             <h1 class="h4 text-gray-900 mb-4">ระดับความเสี่ยงที่ได้อยู่ในระดับ</h1>
                                             <?php $sum_scr = 0 ; 
                                                 foreach ($score as $scr){

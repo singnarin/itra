@@ -56,7 +56,7 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link collapsed" href="../result" >
+    <a class="nav-link collapsed" href="../resultchart" >
       <i class="fas fa-fw fa-cog"></i>
       <span>ผลการประเมินความเสี่ยง</span>
       
@@ -78,7 +78,7 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link collapsed" href="../resultadmin" >
+    <a class="nav-link collapsed" href="../resultadminchart" >
       <i class="fas fa-fw fa-cog"></i>
       <span>ผลการประเมินความเสี่ยง</span>
     </a>
